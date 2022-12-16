@@ -19,7 +19,16 @@ const doors = [
         frameBuffer : 3,
         loop: false,
         autoplay : false,
-        id : "porte00"
+        hitbox : {
+            position : {
+                x: 448,
+                y: 64 ,
+            },
+            width : 64, 
+            height: 64,
+        },
+        id : "porte00",
+        
     }),
     new Sprite({
         position : {
@@ -46,9 +55,30 @@ const doors = [
         id : "porte02"
     })
 ]
-const colidableActors = {
-    doors
-}
+
+const chest = [
+    new Sprite({
+        position : {
+            x: 128,
+            y: 128,
+        },
+        imageSrc : ChestAnimList.chestOppening,
+        frameNumber : 4,
+        frameBuffer : 3,
+        loop: false,
+        autoplay : false,
+        id : "chest00"
+    }),
+]
+// const colidableActors = {
+//     doors,
+//     chest
+// }
+
+const colidableActors = [
+    {content : doors},
+    {content : chest}
+]
 
 let globalEvents = {
     playerActionActivated : "no"
@@ -114,6 +144,7 @@ const player = new Player({
         
     },
     colidableActors,
+    id : 'Player',
 })
 
 
@@ -151,10 +182,19 @@ function animate(){
         colisionBlock.draw()
     })
     
-    colidableActors.doors.forEach(door => {
-        door.draw()
+    colidableActors.forEach(actorType => {
+        actorType.content.forEach(actor => {
+            actor.draw()
+        })
     })
 
+    //old actor one by one drawing
+    // colidableActors.doors.forEach(door => {
+    //     door.draw()
+    // })
+    // colidableActors.chest.forEach(door => {
+    //     door.draw()
+    // })
     player.velocity.y = 0
     player.velocity.x = 0
     if(keys.d.pressed){

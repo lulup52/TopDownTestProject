@@ -12,3 +12,6 @@ const HeroAnimList = {
 const DoorAnimList = {
     doorOppening: "./img/props/doorOpen.png",
 }
+const ChestAnimList = {
+    chestOppening: "./img/props/chestOpen.png",
+}

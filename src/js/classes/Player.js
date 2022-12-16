@@ -4,8 +4,10 @@ class Player extends Sprite {
         imageSrc,
         frameNumber,
         animations,
+        hitBox = {},
+        id = "none",
         }) {
-        super({ imageSrc, frameNumber, animations })
+        super({ imageSrc, frameNumber, animations, hitBox,id })
         this.position = {
             x: 350,
             y: 350
@@ -24,7 +26,7 @@ class Player extends Sprite {
         this.colisionBlocks = colisionBlocks
         this.actionAvailable = ""
         this.overlapedDoor = ""
-
+        this.hitBox =hitBox
     }
     
     update() {
@@ -128,17 +130,53 @@ class Player extends Sprite {
     
     colideWithObject() {
         globalEvents.playerActionActivated = "no"
-        for (let i = 0; i < colidableActors.doors.length ; i++) {
-            if (
-                this.hitbox.position.x <= colidableActors.doors[i].position.x + colidableActors.doors[i].width 
-                && this.hitbox.position.x + this.hitbox.width >= colidableActors.doors[i].position.x 
-                && this.hitbox.position.y + this.hitbox.height >= colidableActors.doors[i].position.y 
-                && this.hitbox.position.y <= colidableActors.doors[i].position.y + colidableActors.doors[i].height
-            ) {
-                globalEvents.playerActionActivated = colidableActors.doors[i].id
-            } 
+        
 
-        }
+        colidableActors.forEach(actorType => {
+            actorType.content.forEach(actor => {
+                if (actor.hitbox) {
+                    if (
+                        this.hitbox.position.x <= actor.hitbox.position.x + actor.hitbox.width 
+                        && this.hitbox.position.x + this.hitbox.width >= actor.hitbox.position.x 
+                        && this.hitbox.position.y + this.hitbox.height >= actor.hitbox.position.y 
+                        && this.hitbox.position.y <= actor.hitbox.position.y + actor.hitbox.height
+                    ) {
+                        globalEvents.playerActionActivated = actor.id
+                    } 
+                } else {
+                    if (
+                        this.hitbox.position.x <= actor.position.x + actor.width 
+                        && this.hitbox.position.x + this.hitbox.width >= actor.position.x 
+                        && this.hitbox.position.y + this.hitbox.height >= actor.position.y 
+                        && this.hitbox.position.y <= actor.position.y + actor.height
+                    ) {
+                        globalEvents.playerActionActivated = actor.id
+                    } 
+                }
+            })
+        })
+
+
+        // for (let i = 0; i < colidableActors.doors.length ; i++) {
+        //     if (
+        //         this.hitbox.position.x <= colidableActors.doors[i].position.x + colidableActors.doors[i].width 
+        //         && this.hitbox.position.x + this.hitbox.width >= colidableActors.doors[i].position.x 
+        //         && this.hitbox.position.y + this.hitbox.height >= colidableActors.doors[i].position.y 
+        //         && this.hitbox.position.y <= colidableActors.doors[i].position.y + colidableActors.doors[i].height
+        //     ) {
+        //         globalEvents.playerActionActivated = colidableActors.doors[i].id
+        //     } 
+        // }
+        // for (let i = 0; i < colidableActors.chest.length ; i++) {
+        //     if (
+        //         this.hitbox.position.x <= colidableActors.chest[i].position.x + colidableActors.chest[i].width 
+        //         && this.hitbox.position.x + this.hitbox.width >= colidableActors.chest[i].position.x 
+        //         && this.hitbox.position.y + this.hitbox.height >= colidableActors.chest[i].position.y 
+        //         && this.hitbox.position.y <= colidableActors.chest[i].position.y + colidableActors.chest[i].height
+        //     ) {
+        //         globalEvents.playerActionActivated = colidableActors.chest[i].id
+        //     } 
+        // }
     } 
     
 }

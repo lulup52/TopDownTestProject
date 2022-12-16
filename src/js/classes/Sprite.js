@@ -7,7 +7,8 @@ class Sprite{
         animations, 
         frameBuffer = 12, 
         loop = true, 
-        autoplay = true
+        autoplay = true,
+        hitbox =false
     }){
         this.id = id
         this.position = position
@@ -18,6 +19,7 @@ class Sprite{
             this.width = this.image.width / this.frameNumber
             this.height = this.image.height 
         }
+        this.hitbox = hitbox
         this.image.src = imageSrc 
         this.loaded = false
         this.curentFrame = 0
@@ -26,7 +28,6 @@ class Sprite{
         this.animations = animations
         this.loop = loop
         this.autoplay = autoplay
-        console.log(this.animations)
         //create images for all animations
         if (this.animations) {
 
@@ -36,9 +37,10 @@ class Sprite{
                 this.animations[key].image = newimage
             }
         }
-
+        console.log(this.hitbox)
     }
     draw() {
+        
         if (!this.loaded) {
             return
         }
@@ -64,7 +66,16 @@ class Sprite{
         )
         this.updateFrames()
 
-        
+        // dra hitbox
+        if (this.hitbox) {
+            if (this.id !== "Player") {
+                c.fillStyle = "rgba(0,255,0,0.4)"
+                c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+            } else {
+                c.fillStyle = "rgba(255,0,0,0.4)"
+                c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+            }
+        }
         
     }
     play() {
