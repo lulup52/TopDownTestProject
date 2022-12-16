@@ -1,0 +1,48 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "lvl1/lvl1test.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "HeroAnmi.tsx": {
+            "scaleInDock": 1
+        },
+        "collision64*64.tsx": {
+            "scaleInDock": 1
+        },
+        "decorsTest64_64.tsx": {
+            "scaleInDock": 0.6644
+        },
+        "lvl1/lvl1test.tmx": {
+            "scale": 2.1567,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 532.5265451847731,
+                "y": 162.74864376130196
+            }
+        }
+    },
+    "last.exportedFilePath": "/Users/lucas/Desktop/projets/devPerso/TopDownTestProject/levels/colisions",
+    "map.height": 9,
+    "map.lastUsedExportFilter": "Fichiers de carte JavaScript (*.js)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 16,
+    "openFiles": [
+        "lvl1/lvl1test.tmx"
+    ],
+    "project": "lvl1MapMetdieval.tiled-project",
+    "recentFiles": [
+        "lvl1/lvl1test.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    }
+}
