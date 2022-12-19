@@ -39,6 +39,7 @@ class Player extends Sprite {
        
         this.colideWithObject()
 
+        
     }
     switchSprite(name) {
         if (this.image === this.animations[name].image) {
@@ -131,9 +132,10 @@ class Player extends Sprite {
     colideWithObject() {
         globalEvents.playerActionActivated = "no"
         
-
-        colidableActors.forEach(actorType => {
-            actorType.content.forEach(actor => {
+        for (let i = 0; i < colidableActors.length; i++) {
+            for (let j = 0; j < colidableActors[i].content.length; j++) {
+                let actor = colidableActors[i].content[j]
+                console.log(actor)
                 if (actor.hitbox) {
                     if (
                         this.hitbox.position.x <= actor.hitbox.position.x + actor.hitbox.width 
@@ -142,22 +144,10 @@ class Player extends Sprite {
                         && this.hitbox.position.y <= actor.hitbox.position.y + actor.hitbox.height
                     ) {
                         globalEvents.playerActionActivated = actor.id
-                    } 
-                } else {
-                    if (
-                        this.hitbox.position.x <= actor.position.x + actor.width 
-                        && this.hitbox.position.x + this.hitbox.width >= actor.position.x 
-                        && this.hitbox.position.y + this.hitbox.height >= actor.position.y 
-                        && this.hitbox.position.y <= actor.position.y + actor.height
-                    ) {
-                        globalEvents.playerActionActivated = actor.id
-                    } 
-                }
-            })
-        })
+                        console.log('tututututu')
 
-
-        // for (let i = 0; i < colidableActors.doors.length ; i++) {
+                        //check colision with door
+                        // for (let i = 0; i < colidableActors.doors.length ; i++) {
         //     if (
         //         this.hitbox.position.x <= colidableActors.doors[i].position.x + colidableActors.doors[i].width 
         //         && this.hitbox.position.x + this.hitbox.width >= colidableActors.doors[i].position.x 
@@ -177,6 +167,24 @@ class Player extends Sprite {
         //         globalEvents.playerActionActivated = colidableActors.chest[i].id
         //     } 
         // }
+                    } 
+                } else {
+                    if (
+                        this.hitbox.position.x <= actor.position.x + actor.width 
+                        && this.hitbox.position.x + this.hitbox.width >= actor.position.x 
+                        && this.hitbox.position.y + this.hitbox.height >= actor.position.y 
+                        && this.hitbox.position.y <= actor.position.y + actor.height
+                    ) {
+                        globalEvents.playerActionActivated = actor.id
+                    } 
+                }
+            }
+
+        } 
+       
+
+
+        
     } 
     
 }
