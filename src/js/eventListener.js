@@ -17,26 +17,13 @@ window.addEventListener('keydown', (event) => {
             console.log("j'apui sur D") 
         break
         case 'e':
-            
-            // for (let i = 0; i < colidableActors.doors.length ; i++){
-            //     if (globalEvents.playerActionActivated === colidableActors.doors[i].id) {
-            //         colidableActors.doors[i].play()
-            //     } else {
-
-            //     }
-            // }
-            // for (let i = 0; i < colidableActors.chest.length ; i++){
-            //     if (globalEvents.playerActionActivated === colidableActors.chest[i].id) {
-            //         colidableActors.chest[i].play()
-            //     } else {
-
-            //     }
-            // }
             colidableActors.forEach(actorType => {
                 actorType.content.forEach(actor => {
                     if (globalEvents.playerActionActivated === actor.id) {
                         actor.play()
-                        console.log(actor)
+                        if (actor.id.includes("porte")) {
+                            globalEvents.specialAnimationPlayed = "enteringDoor"
+                        }
                     } else {
     
                     }

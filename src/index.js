@@ -1,4 +1,8 @@
 
+const debugWatcher = {
+    drawHitbox : false
+}
+
 const canvas = document.querySelector("canvas")
 const c = canvas.getContext('2d')
 
@@ -40,6 +44,14 @@ const doors = [
         frameBuffer : 3,
         loop: false,
         autoplay : false,
+        hitbox : {
+            position : {
+                x: 448,
+                y: 440 ,
+            },
+            width : 64, 
+            height: 64,
+        },
         id : "porte01"
     }),
     new Sprite({
@@ -81,7 +93,8 @@ const colidableActors = [
 ]
 
 let globalEvents = {
-    playerActionActivated : "no"
+    playerActionActivated : "no",
+    specialAnimationPlayed : "",
 }
 
 
@@ -141,6 +154,12 @@ const player = new Player({
             loop : true,
             imageSrc : HeroAnimList.WalkDown,
         },    
+        walkInDoor : {
+            frameNumber: 12,
+            frameBuffer : 6,
+            loop : false,
+            imageSrc : HeroAnimList.walkInDoor,
+        },    
         
     },
     colidableActors,
@@ -173,7 +192,6 @@ const keys = {
 }
 // let bottom = y + 100
 function animate(){
-    console.log()
 
     window.requestAnimationFrame(animate)
 
@@ -187,7 +205,6 @@ function animate(){
             actor.draw()
         })
     })
-
     //old actor one by one drawing
     // colidableActors.doors.forEach(door => {
     //     door.draw()
@@ -197,7 +214,15 @@ function animate(){
     // })
     player.velocity.y = 0
     player.velocity.x = 0
-    if(keys.d.pressed){
+    if (globalEvents.specialAnimationPlayed === "enteringDoor") {
+        player.switchSprite("walkInDoor")
+        player.velocity.y = -.4
+
+        if (player.curentFrame === 11) {
+            globalEvents.specialAnimationPlayed = ''
+            return
+        }
+    } else if(keys.d.pressed){
         player.switchSprite("walkright")
         player.velocity.x = player.moveSpeed
         player.velocity.y = 0

@@ -26,7 +26,7 @@ class Player extends Sprite {
         this.colisionBlocks = colisionBlocks
         this.actionAvailable = ""
         this.overlapedDoor = ""
-        this.hitBox =hitBox
+        this.hitBox = hitBox
     }
     
     update() {
@@ -36,10 +36,7 @@ class Player extends Sprite {
         this.position.y += this.velocity.y
         this.updateHitbox()
         this.checkForVTCol() 
-       
         this.colideWithObject()
-
-        
     }
     switchSprite(name) {
         if (this.image === this.animations[name].image) {
@@ -135,39 +132,75 @@ class Player extends Sprite {
         for (let i = 0; i < colidableActors.length; i++) {
             for (let j = 0; j < colidableActors[i].content.length; j++) {
                 let actor = colidableActors[i].content[j]
-                console.log(actor)
                 if (actor.hitbox) {
-                    if (
-                        this.hitbox.position.x <= actor.hitbox.position.x + actor.hitbox.width 
-                        && this.hitbox.position.x + this.hitbox.width >= actor.hitbox.position.x 
-                        && this.hitbox.position.y + this.hitbox.height >= actor.hitbox.position.y 
-                        && this.hitbox.position.y <= actor.hitbox.position.y + actor.hitbox.height
-                    ) {
-                        globalEvents.playerActionActivated = actor.id
-                        console.log('tututututu')
-
-                        //check colision with door
-                        // for (let i = 0; i < colidableActors.doors.length ; i++) {
-        //     if (
-        //         this.hitbox.position.x <= colidableActors.doors[i].position.x + colidableActors.doors[i].width 
-        //         && this.hitbox.position.x + this.hitbox.width >= colidableActors.doors[i].position.x 
-        //         && this.hitbox.position.y + this.hitbox.height >= colidableActors.doors[i].position.y 
-        //         && this.hitbox.position.y <= colidableActors.doors[i].position.y + colidableActors.doors[i].height
-        //     ) {
-        //         globalEvents.playerActionActivated = colidableActors.doors[i].id
-        //     } 
-        // }
-        // for (let i = 0; i < colidableActors.chest.length ; i++) {
-        //     if (
-        //         this.hitbox.position.x <= colidableActors.chest[i].position.x + colidableActors.chest[i].width 
-        //         && this.hitbox.position.x + this.hitbox.width >= colidableActors.chest[i].position.x 
-        //         && this.hitbox.position.y + this.hitbox.height >= colidableActors.chest[i].position.y 
-        //         && this.hitbox.position.y <= colidableActors.chest[i].position.y + colidableActors.chest[i].height
-        //     ) {
-        //         globalEvents.playerActionActivated = colidableActors.chest[i].id
-        //     } 
-        // }
-                    } 
+                    if (globalEvents.specialAnimationPlayed === "") {
+                        if (
+                            //add 15 px to hibox to create a larger hitboxDetection
+                            this.hitbox.position.x <= actor.hitbox.position.x + actor.hitbox.width - 25
+                            && this.hitbox.position.x + this.hitbox.width >= actor.hitbox.position.x + 25
+                            && this.hitbox.position.y + this.hitbox.height >= actor.hitbox.position.y - 10 
+                            && this.hitbox.position.y <= actor.hitbox.position.y + actor.hitbox.height + 10
+                        ) {
+                            globalEvents.playerActionActivated = actor.id
+                        }
+                        if (
+                            //add 15 px to hibox to create a larger hitboxDetection
+                            this.hitbox.position.x <= actor.hitbox.position.x + actor.hitbox.width 
+                            && this.hitbox.position.x + this.hitbox.width >= actor.hitbox.position.x
+                            && this.hitbox.position.y + this.hitbox.height >= actor.hitbox.position.y 
+                            && this.hitbox.position.y <= actor.hitbox.position.y + actor.hitbox.height 
+                        ) {
+                            //check colision with door
+                            //colision in y to the botom
+                            if (this.hitbox.position.y < actor.hitbox.position.y + actor.hitbox.height) {
+                                console.log(this.hitbox.position.y, this.hitbox.height, this.hitbox.position.y - this.hitbox.height  )
+    
+                                if (this.velocity.y < 0) {
+                                    this.velocity.y = 0
+                                    this.velocity.x = 0
+    
+                                    const offset = this.hitbox.position.y - this.position.y 
+                                    this.position.y = actor.hitbox.position.y + actor.hitbox.height - offset + 0.01
+                                    break
+                                }
+                            }
+                        //colision in y axis to the top
+                            if (this.hitbox.position.y + this.hitbox.height > actor.hitbox.position.y) {
+                                if (this.velocity.y > 0) {
+                                    this.velocity.y = 0
+                                    this.velocity.x = 0
+                                    const offset = this.hitbox.position.y - this.position.y + this.hitbox.height
+                                    this.position.y = actor.position.y - offset - 0.01
+                                    break
+                                }
+                            }
+                            
+                           
+                            //colision in x axis to the lef
+                            if ( this.hitbox.position.x < actor.hitbox.position.x + actor.hitbox.width) {
+                                if (this.velocity.x < 0) {
+                                    this.velocity.y = 0
+                                    this.velocity.x = 0
+                                    const offset = this.hitbox.position.x - this.position.x
+                                    this.position.x = actor.position.x + actor.width - offset  + 0.01
+                                    break
+                                }
+                            }
+    
+                            //colision in x axis to the right
+                            if (this.hitbox.position.x + this.hitbox.width > actor.hitbox.position.x) {
+                                if (this.velocity.x > 0) {
+                                    this.velocity.y = 0
+                                    this.velocity.x = 0
+                                    const offset = this.hitbox.position.x + this.hitbox.width  - this.position.x
+                                    this.position.x = actor.position.x - offset - 0.01
+                                    break
+                                }
+                            }
+                            
+                        } 
+                    }
+                    
                 } else {
                     if (
                         this.hitbox.position.x <= actor.position.x + actor.width 

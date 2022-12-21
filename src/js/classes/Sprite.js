@@ -37,10 +37,11 @@ class Sprite{
                 this.animations[key].image = newimage
             }
         }
-        console.log(this.hitbox)
     }
     draw() {
-        
+        if (this.id === "Player") {
+
+        }
         if (!this.loaded) {
             return
         }
@@ -66,16 +67,19 @@ class Sprite{
         )
         this.updateFrames()
 
-        // dra hitbox
-        if (this.hitbox) {
-            if (this.id !== "Player") {
-                c.fillStyle = "rgba(0,255,0,0.4)"
-                c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
-            } else {
-                c.fillStyle = "rgba(255,0,0,0.4)"
-                c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+        // draw hitbox
+        if (debugWatcher.drawHitbox) {
+            if (this.hitbox) {
+                if (this.id !== "Player") {
+                    c.fillStyle = "rgba(0,255,0,0.4)"
+                    c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+                } else {
+                    c.fillStyle = "rgba(255,0,0,0.4)"
+                    c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+                }
             }
         }
+        
         
     }
     play() {
