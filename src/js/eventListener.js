@@ -22,7 +22,7 @@ window.addEventListener('keydown', (event) => {
                     if (globalEvents.playerActionActivated === actor.id) {
                         actor.play()
                         if (actor.id.includes("porte")) {
-                            globalEvents.specialAnimationPlayed = "enteringDoor"
+                            globalEvents.specialAnimationPlayed = "enter"
                         }
                     } else {
     

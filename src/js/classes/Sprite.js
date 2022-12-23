@@ -8,7 +8,9 @@ class Sprite{
         frameBuffer = 12, 
         loop = true, 
         autoplay = true,
-        hitbox =false
+        hitbox =false,
+        hitboxAction = false
+
     }){
         this.id = id
         this.position = position
@@ -28,6 +30,8 @@ class Sprite{
         this.animations = animations
         this.loop = loop
         this.autoplay = autoplay
+        this.hitboxAction = hitboxAction
+        this.currentAnimation
         //create images for all animations
         if (this.animations) {
 
@@ -71,13 +75,17 @@ class Sprite{
         if (debugWatcher.drawHitbox) {
             if (this.hitbox) {
                 if (this.id !== "Player") {
-                    c.fillStyle = "rgba(0,255,0,0.4)"
+                    c.fillStyle = "rgba(0,255,0,0.6)"
                     c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
                 } else {
                     c.fillStyle = "rgba(255,0,0,0.4)"
                     c.fillRect(this.hitbox.position.x,this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
                 }
             }
+            if (this.hitboxAction) {
+                c.fillStyle = this.hitboxAction.color
+                c.fillRect(this.hitboxAction.position.x,this.hitboxAction.position.y, this.hitboxAction.width, this.hitboxAction.height)
+            } 
         }
         
         
@@ -98,6 +106,12 @@ class Sprite{
 
             } else if (this.loop) {
                 this.curentFrame = 0
+            }
+        }
+        if (this.currentAnimation?.onComplete) {
+            if(this.curentFrame === (this.frameNumber  /  2) && !this.currentAnimation.isActive) {
+                this.currentAnimation.onComplete()
+                this.currentAnimation.isActive = true
             }
         }
     }

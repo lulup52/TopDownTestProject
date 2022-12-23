@@ -1,7 +1,8 @@
 
 const debugWatcher = {
-    drawHitbox : false
+    drawHitbox : true
 }
+
 
 const canvas = document.querySelector("canvas")
 const c = canvas.getContext('2d')
@@ -9,96 +10,144 @@ const c = canvas.getContext('2d')
 canvas.width = 64 * 16
 canvas.height = 64 * 9
 
-const parsedCollisions = collisionsLvl1.parse2D()
-const colisionBlocks = parsedCollisions.createObjectsFrom2D()
+let parsedCollisions 
+let colisionBlocks
+let background
+let doors
+let chest
+let colidableActors
 
-const doors = [
-    new Sprite({
-        position : {
-            x: 448,
-            y: 64,
-        },
-        imageSrc : DoorAnimList.doorOppening,
-        frameNumber : 6,
-        frameBuffer : 3,
-        loop: false,
-        autoplay : false,
-        hitbox : {
-            position : {
-                x: 448,
-                y: 64 ,
-            },
-            width : 64, 
-            height: 64,
-        },
-        id : "porte00",
-        
-    }),
-    new Sprite({
-        position : {
-            x: 448,
-            y: 440,
-        },
-        imageSrc : DoorAnimList.doorOppening,
-        frameNumber : 6,
-        frameBuffer : 3,
-        loop: false,
-        autoplay : false,
-        hitbox : {
-            position : {
-                x: 448,
-                y: 440 ,
-            },
-            width : 64, 
-            height: 64,
-        },
-        id : "porte01"
-    }),
-    new Sprite({
-        position : {
-            x: 550,
-            y: 440,
-        },
-        imageSrc : DoorAnimList.doorOppening,
-        frameNumber : 6,
-        frameBuffer : 3,
-        loop: false,
-        autoplay : false,
-        id : "porte02"
-    })
-]
+let lvl = 1
+let levels = {
+    1 : {
+        init : () => {
+            parsedCollisions = collisionsLvl1.parse2D()
+            colisionBlocks = parsedCollisions.createObjectsFrom2D()
+            background = new Sprite({
+                position: {
+                    x: 0,
+                    y: 0,
+                },
+                imageSrc : './img/mapBg/testTopDownLvl1.png',
+            
+            })
+            doors = [
+                new Sprite({
+                    position : {
+                        x: 448,
+                        y: 64,
+                    },
+                    imageSrc : DoorAnimList.doorOppening,
+                    frameNumber : 6,
+                    frameBuffer : 3,
+                    loop: false,
+                    autoplay : false,
+                    hitbox : {
+                        position : {
+                            x: 448,
+                            y: 64 ,
+                        },
+                        width : 64, 
+                        height: 64,
+                    },
+                    id : "porte00",
+                    
+                }),
+                new Sprite({
+                    position : {
+                        x: 448,
+                        y: 440,
+                    },
+                    imageSrc : DoorAnimList.doorOppening,
+                    frameNumber : 6,
+                    frameBuffer : 3,
+                    loop: false,
+                    autoplay : false,
+                    hitbox : {
+                        position : {
+                            x: 448,
+                            y: 440 ,
+                        },
+                        width : 64, 
+                        height: 64,
+                    },
+                    hitboxAction : {
+                        color: "rgba(0,255,255,0.4)",
+                        position : {
+                            x: 448,
+                            y: 504 ,
+                        },
+                        width : 64, 
+                        height: 20,
+                    },
+                    id : "porte01"
+                }),
+                new Sprite({
+                    position : {
+                        x: 550,
+                        y: 440,
+                    },
+                    imageSrc : DoorAnimList.doorOppening,
+                    frameNumber : 6,
+                    frameBuffer : 3,
+                    loop: false,
+                    autoplay : false,
+                    id : "porte02"
+                })
+            ]
+            chest = [
+                new Sprite({
+                    position : {
+                        x: 128,
+                        y: 128,
+                    },
+                    imageSrc : ChestAnimList.chestOppening,
+                    frameNumber : 4,
+                    frameBuffer : 3,
+                    hitbox : {
+                        position : {
+                            x: 128,
+                            y: 128 ,
+                        },
+                        width : 64, 
+                        height: 64,
+                    },
+                    hitboxAction : {
+                        color: "rgba(0,255,255,0.4)",
+                        position : {
+                            x: 118,
+                            y: 128 ,
+                        },
+                        width : 84, 
+                        height: 74,
+                    },
+                    loop: false,
+                    autoplay : false,
+                    id : "chest00"
+                }),
+            ]
+            colidableActors = [
+                {content : doors},
+                {content : chest}
+            ]
+        }
+    }
+}
 
-const chest = [
-    new Sprite({
-        position : {
-            x: 128,
-            y: 128,
-        },
-        imageSrc : ChestAnimList.chestOppening,
-        frameNumber : 4,
-        frameBuffer : 3,
-        loop: false,
-        autoplay : false,
-        id : "chest00"
-    }),
-]
+
+
+
 // const colidableActors = {
 //     doors,
 //     chest
 // }
 
-const colidableActors = [
-    {content : doors},
-    {content : chest}
-]
 
+console.log()
 let globalEvents = {
     playerActionActivated : "no",
     specialAnimationPlayed : "",
 }
-
-
-
 
 const player = new Player({
     colisionBlocks,
@@ -159,6 +208,11 @@ const player = new Player({
             frameBuffer : 6,
             loop : false,
             imageSrc : HeroAnimList.walkInDoor,
+            onComplete : () => {
+                gsap.to(overlay, {
+                    opacity : 1,
+                })
+            }
         },    
         
     },
@@ -166,16 +220,6 @@ const player = new Player({
     id : 'Player',
 })
 
-
-
-const bgLvl1 = new Sprite({
-    position: {
-        x: 0,
-        y: 0,
-    },
-    imageSrc : './img/mapBg/testTopDownLvl1.png',
-   
-})
 const keys = {
     z: {
         pressed: false
@@ -190,12 +234,15 @@ const keys = {
         pressed: false
     }
 }
-// let bottom = y + 100
-function animate(){
 
+const overlay = {
+    opacity : 0,
+}
+function animate(){
+    
     window.requestAnimationFrame(animate)
 
-    bgLvl1.draw()
+    background.draw()
     colisionBlocks.forEach(colisionBlock => {
         colisionBlock.draw()
     })
@@ -214,7 +261,7 @@ function animate(){
     // })
     player.velocity.y = 0
     player.velocity.x = 0
-    if (globalEvents.specialAnimationPlayed === "enteringDoor") {
+    if (globalEvents.specialAnimationPlayed === "enter") {
         player.switchSprite("walkInDoor")
         player.velocity.y = -.4
 
@@ -254,10 +301,18 @@ function animate(){
         }
 
     }
+    
     player.draw()
     player.update()
+
+    c.save()
+    c.globalAlpha = overlay.opacity
+    c.fillStyle = "black"
+    c.fillRect(0,0,canvas.width, canvas.height)
+    c.restore()
 }
 
+levels[lvl].init()
 animate()
 // action when press input
 

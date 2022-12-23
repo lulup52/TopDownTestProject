@@ -46,6 +46,7 @@ class Player extends Sprite {
         this.image = this.animations[name].image
         this.frameNumber = this.animations[name].frameNumber
         this.frameBuffer = this.animations[name].frameBuffer
+        this.currentAnimation = this.animations[name]
     }
     updateHitbox() {
         this.hitbox = {
@@ -133,18 +134,20 @@ class Player extends Sprite {
             for (let j = 0; j < colidableActors[i].content.length; j++) {
                 let actor = colidableActors[i].content[j]
                 if (actor.hitbox) {
+                    if (
+                        //check hitboxAction collision to let player activate the object
+                        actor.hitboxAction 
+                        && this.hitbox.position.x <= actor.hitboxAction.position.x + actor.hitboxAction.width
+                        && this.hitbox.position.x + this.hitbox.width >= actor.hitboxAction.position.x 
+                        && this.hitbox.position.y + this.hitbox.height >= actor.hitboxAction.position.y 
+                        && this.hitbox.position.y <= actor.hitboxAction.position.y + actor.hitboxAction.height 
+                    ) {
+                        globalEvents.playerActionActivated = actor.id
+                    }
                     if (globalEvents.specialAnimationPlayed === "") {
+                        
                         if (
-                            //add 15 px to hibox to create a larger hitboxDetection
-                            this.hitbox.position.x <= actor.hitbox.position.x + actor.hitbox.width - 25
-                            && this.hitbox.position.x + this.hitbox.width >= actor.hitbox.position.x + 25
-                            && this.hitbox.position.y + this.hitbox.height >= actor.hitbox.position.y - 10 
-                            && this.hitbox.position.y <= actor.hitbox.position.y + actor.hitbox.height + 10
-                        ) {
-                            globalEvents.playerActionActivated = actor.id
-                        }
-                        if (
-                            //add 15 px to hibox to create a larger hitboxDetection
+                            //manage hitbox colisions
                             this.hitbox.position.x <= actor.hitbox.position.x + actor.hitbox.width 
                             && this.hitbox.position.x + this.hitbox.width >= actor.hitbox.position.x
                             && this.hitbox.position.y + this.hitbox.height >= actor.hitbox.position.y 
@@ -153,7 +156,6 @@ class Player extends Sprite {
                             //check colision with door
                             //colision in y to the botom
                             if (this.hitbox.position.y < actor.hitbox.position.y + actor.hitbox.height) {
-                                console.log(this.hitbox.position.y, this.hitbox.height, this.hitbox.position.y - this.hitbox.height  )
     
                                 if (this.velocity.y < 0) {
                                     this.velocity.y = 0
