@@ -109,7 +109,7 @@ class Sprite{
             }
         }
         if (this.currentAnimation?.onComplete) {
-            if(this.curentFrame === (this.frameNumber  /  2) && !this.currentAnimation.isActive) {
+            if(this.curentFrame === 1 && !this.currentAnimation.isActive) {
                 this.currentAnimation.onComplete()
                 this.currentAnimation.isActive = true
             }
