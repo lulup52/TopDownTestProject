@@ -1,5 +1,9 @@
 window.addEventListener('keydown', (event) => {
     switch(event.key) {
+        case 'w':
+            console.log(debugWatcher.drawHitbox)
+           debugWatcher.drawHitbox = !debugWatcher.drawHitbox
+        break
         case 'z':
             keys.z.pressed = true
             console.log("j'apui sur Z") 

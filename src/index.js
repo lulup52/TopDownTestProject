@@ -1,5 +1,5 @@
 
-const debugWatcher = {
+let debugWatcher = {
     drawHitbox : true
 }
 
