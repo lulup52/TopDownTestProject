@@ -126,12 +126,82 @@ let levels = {
                     id : "chest00"
                 }),
             ]
+            coins = [
+                new Sprite({
+                    position : {
+                        x: 300,
+                        y: 350,
+                    },
+                    imageSrc : "./img/props/coinTest.png",
+                    frameNumber : 1,
+                    frameBuffer : 1,
+                    loop: false,
+                    autoplay : false,
+                    hitbox : {
+                        position : {
+                            x: 0,
+                            y: 0 ,
+                        },
+                        width : 0, 
+                        height: 0,
+                    },
+                    hitboxAction : {
+                        color: "rgba(0,255,255,0.4)",
+                        position : {
+                            x: 316,
+                            y: 365 ,
+                        },
+                        width : 32, 
+                        height: 32,
+                    },
+                    id : "coin1",
+                }),
+                new Sprite({
+                    position : {
+                        x: 400,
+                        y: 350,
+                    },
+                    imageSrc : "./img/props/coinTest.png",
+                    frameNumber : 1,
+                    frameBuffer : 1,
+                    loop: false,
+                    autoplay : false,
+                    hitbox : {
+                        position : {
+                            x: 0,
+                            y: 0 ,
+                        },
+                        width : 0, 
+                        height: 0,
+                    },
+                    hitboxAction : {
+                        color: "rgba(0,255,255,0.4)",
+                        position : {
+                            x: 416,
+                            y: 365 ,
+                        },
+                        width : 32, 
+                        height: 32,
+                    },
+                    id : "coin2",
+                }),
+            ]
+
             colidableActors = [
-                {content : doors},
-                {content : chest}
+                {
+                    name: 'door',
+                    content : doors,
+                },
+                {
+                    name: 'chest',
+                    content : chest
+                },
+                {
+                    name: 'coin',
+                    content : coins
+                },
             ]
             player.colisionBlocks =  colisionBlocks
-
         }
     },
     2 : {
@@ -372,19 +442,12 @@ function animate(){
     colisionBlocks.forEach(colisionBlock => {
         colisionBlock.draw()
     })
-    
     colidableActors.forEach(actorType => {
         actorType.content.forEach(actor => {
             actor.draw()
         })
     })
-    //old actor one by one drawing
-    // colidableActors.doors.forEach(door => {
-    //     door.draw()
-    // })
-    // colidableActors.chest.forEach(door => {
-    //     door.draw()
-    // })
+    
       c.save()
     c.globalAlpha = overlay.opacity
     c.fillStyle = "black"

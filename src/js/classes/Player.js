@@ -142,7 +142,10 @@ class Player extends Sprite {
                         && this.hitbox.position.y + this.hitbox.height >= actor.hitboxAction.position.y 
                         && this.hitbox.position.y <= actor.hitboxAction.position.y + actor.hitboxAction.height 
                     ) {
-                        globalEvents.playerActionActivated = actor.id
+                        if (actor.id.includes("coin")) {
+                            actor.erase()
+                        }
+                            globalEvents.playerActionActivated = actor.id
                     }
                     if (globalEvents.specialAnimationPlayed === "") {
                         

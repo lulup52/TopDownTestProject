@@ -42,7 +42,21 @@ class Sprite{
             }
         }
     }
+    erase() {
+        console.log(this.id)
+        colidableActors.forEach(props => {
+            if (this.id.includes(props.name)) {
+                props.content.forEach(uniqueProps => {
+                    if (this.id === uniqueProps.id)
+                    props.content.pop(uniqueProps)
+                    console.log(uniqueProps)
+                })
+            }
+        });
+
+    }
     draw() {
+
         if (this.id === "Player") {
 
         }
