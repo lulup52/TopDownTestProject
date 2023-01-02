@@ -21,6 +21,11 @@ let inventory = {
     coins : 0,
     items : [] 
 }
+let equipedItems = {
+    weapons : [],
+    stuf : [],
+}
+
 let lvl = 1
 let levels = {
     1 : {
@@ -458,6 +463,12 @@ const player = new Player({
             loop : true,
             imageSrc : HeroAnimList.WalkDown,
         },    
+        walkrightSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.WalkDown,
+        },    
         walkInDoor : {
             frameNumber: 12,
             frameBuffer : 6,
@@ -531,13 +542,15 @@ function animate(){
             globalEvents.specialAnimationPlayed = ''
             return
         }
-    // animation personnage avec armes à tester !!!!!!!!!!!
-    } else if (globalEvents.principalItemHolded === "one-hand-weapon") {
-
-    // animation personnage sans armes
     } else {
+        let action = ""
+        if (equipedItems.weapons.includes("questItems-sword")) {
+            action = "Sword"
+        }
+        console.log(`walkright${action}`)
+
         if(keys.d.pressed){
-            player.switchSprite("walkright")
+            player.switchSprite(`walkright${action}`)
             player.velocity.x = player.moveSpeed
             player.velocity.y = 0
             player.lastDirection = "right"

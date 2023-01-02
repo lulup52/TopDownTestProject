@@ -55,7 +55,8 @@ class Sprite{
                             inventory.coins++ 
                         }
                         if (this.id === "questItems-sword" ) {
-                            inventory.items.push("questItems-sword") 
+                            equipedItems.weapons.push("questItems-sword") 
+                            inventory.items.push("questItems-sword")
                         }
                     }
 

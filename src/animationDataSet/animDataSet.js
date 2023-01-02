@@ -8,6 +8,7 @@ const HeroAnimList = {
     walkRight : "./img/actors/hero/walkHeroRight66px.png",
     walkLeft : "./img/actors/hero/walkHeroLeft66px.png",
     walkInDoor : "./img/actors/hero/walkIntoDoor.png",
+    walkrightSword : "./img/actors/hero/walkRight-sword.png",
 }
 
 const DoorAnimList = {
