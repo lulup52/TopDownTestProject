@@ -17,6 +17,10 @@ let doors
 let chest
 let colidableActors
 
+let inventory = {
+    coins : 0,
+    items : [] 
+}
 let lvl = 1
 let levels = {
     1 : {
@@ -185,6 +189,66 @@ let levels = {
                     },
                     id : "coin2",
                 }),
+                new Sprite({
+                    position : {
+                        x: 464,
+                        y: 350,
+                    },
+                    imageSrc : "./img/props/coinTest.png",
+                    frameNumber : 1,
+                    frameBuffer : 1,
+                    loop: false,
+                    autoplay : false,
+                    hitbox : {
+                        position : {
+                            x: 0,
+                            y: 0 ,
+                        },
+                        width : 0, 
+                        height: 0,
+                    },
+                    hitboxAction : {
+                        color: "rgba(0,255,255,0.4)",
+                        position : {
+                            x: 480,
+                            y: 365 ,
+                        },
+                        width : 32, 
+                        height: 32,
+                    },
+                    id : "coin3",
+                }),
+            ]
+            questItems = [
+                new Sprite({
+                    position : {
+                        x: 700,
+                        y: 400,
+                    },
+                    imageSrc : questItemsAnimList.sword,
+                    frameNumber : 1,
+                    frameBuffer : 1,
+                    loop: false,
+                    autoplay : false,
+                    hitbox : {
+                        position : {
+                            x: 0,
+                            y: 0 ,
+                        },
+                        width : 0, 
+                        height: 0,
+                    },
+                    hitboxAction : {
+                        color: "rgba(0,255,255,0.4)",
+                        position : {
+                            x: 700,
+                            y: 400 ,
+                        },
+                        width : 64, 
+                        height: 64,
+                    },
+                    id : "questItems-sword",
+                }), 
             ]
 
             colidableActors = [
@@ -199,6 +263,10 @@ let levels = {
                 {
                     name: 'coin',
                     content : coins
+                },
+                {
+                    name: 'questItems',
+                    content : questItems,
                 },
             ]
             player.colisionBlocks =  colisionBlocks
@@ -332,6 +400,7 @@ let levels = {
 
 console.log()
 let globalEvents = {
+    principalItemHolded : "",
     playerActionActivated : "no",
     specialAnimationPlayed : "",
 }
@@ -462,38 +531,48 @@ function animate(){
             globalEvents.specialAnimationPlayed = ''
             return
         }
-    } else if(keys.d.pressed){
-        player.switchSprite("walkright")
-        player.velocity.x = player.moveSpeed
-        player.velocity.y = 0
-        player.lastDirection = "right"
-    }else if(keys.q.pressed){
-        player.switchSprite("walkleft")
-        player.velocity.x = -player.moveSpeed
-        player.velocity.y = 0
-        player.lastDirection = "left"
-    }else if(keys.z.pressed){
-        player.switchSprite("walktop")
-        player.velocity.y = -player.moveSpeed
-        player.velocity.x = 0
-        player.lastDirection = "up"
-    }else if(keys.s.pressed){
-        player.switchSprite("walkdown")
-        player.velocity.y = player.moveSpeed
-        player.velocity.x = 0
-        player.lastDirection = "down"
-    } else {
-        if (player.lastDirection === "left") {
-            player.switchSprite("idleleft")
-        } else if (player.lastDirection === "right") {
-            player.switchSprite("idleright")
-        } else if (player.lastDirection === "up") {
-            player.switchSprite("idletop")
-        } else if (player.lastDirection === "down") {
-            player.switchSprite("idledown")
-        }
+    // animation personnage avec armes à tester !!!!!!!!!!!
+    } else if (globalEvents.principalItemHolded === "one-hand-weapon") {
 
+    // animation personnage sans armes
+    } else {
+        if(keys.d.pressed){
+            player.switchSprite("walkright")
+            player.velocity.x = player.moveSpeed
+            player.velocity.y = 0
+            player.lastDirection = "right"
+        }else if(keys.q.pressed){
+            player.switchSprite("walkleft")
+            player.velocity.x = -player.moveSpeed
+            player.velocity.y = 0
+            player.lastDirection = "left"
+        }else if(keys.z.pressed){
+            player.switchSprite("walktop")
+            player.velocity.y = -player.moveSpeed
+            player.velocity.x = 0
+            player.lastDirection = "up"
+        }else if(keys.s.pressed){
+            player.switchSprite("walkdown")
+            player.velocity.y = player.moveSpeed
+            player.velocity.x = 0
+            player.lastDirection = "down"
+        } else {
+            if (player.lastDirection === "left") {
+                player.switchSprite("idleleft")
+            } else if (player.lastDirection === "right") {
+                player.switchSprite("idleright")
+            } else if (player.lastDirection === "up") {
+                player.switchSprite("idletop")
+            } else if (player.lastDirection === "down") {
+                player.switchSprite("idledown")
+            }
+    
+        }
+        
     }
+    
+    
+    
     
     player.draw()
     player.update()

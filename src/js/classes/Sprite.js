@@ -43,13 +43,23 @@ class Sprite{
         }
     }
     erase() {
+        // a fixer, ramasser une pièce les suprime toutes !!!!!!!!!!!
         console.log(this.id)
         colidableActors.forEach(props => {
             if (this.id.includes(props.name)) {
-                props.content.forEach(uniqueProps => {
-                    if (this.id === uniqueProps.id)
-                    props.content.pop(uniqueProps)
-                    console.log(uniqueProps)
+                props.content.forEach(uniqueProp => {
+                    if (this.id === uniqueProp.id) {
+                        const index = props.content.indexOf(uniqueProp);
+                        props.content.splice(index, 1)
+                        if (this.id.includes('coin') ) {
+                            inventory.coins++ 
+                        }
+                        if (this.id === "questItems-sword" ) {
+                            inventory.items.push("questItems-sword") 
+                        }
+                    }
+
+                    
                 })
             }
         });

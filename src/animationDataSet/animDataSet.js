@@ -16,3 +16,6 @@ const DoorAnimList = {
 const ChestAnimList = {
     chestOppening: "./img/props/chestOpen.png",
 }
+const questItemsAnimList = {
+    sword: "./img/props/sword.png",
+}

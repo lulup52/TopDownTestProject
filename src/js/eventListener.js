@@ -1,7 +1,7 @@
 window.addEventListener('keydown', (event) => {
     switch(event.key) {
         case 'w':
-            console.log(debugWatcher.drawHitbox)
+            console.log(inventory)
            debugWatcher.drawHitbox = !debugWatcher.drawHitbox
         break
         case 'z':

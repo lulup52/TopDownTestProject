@@ -142,7 +142,7 @@ class Player extends Sprite {
                         && this.hitbox.position.y + this.hitbox.height >= actor.hitboxAction.position.y 
                         && this.hitbox.position.y <= actor.hitboxAction.position.y + actor.hitboxAction.height 
                     ) {
-                        if (actor.id.includes("coin")) {
+                        if (actor.id.includes("coin") || actor.id.includes("sword")) {
                             actor.erase()
                         }
                             globalEvents.playerActionActivated = actor.id
