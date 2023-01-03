@@ -12,6 +12,10 @@ const HeroAnimList = {
     walkleftSword : "./img/actors/hero/walkLeft-sword.png",
     walkupSword : "./img/actors/hero/walkUp-sword.png",
     walkdownSword : "./img/actors/hero/walkDown-sword.png",
+    idledownSword : "./img/actors/hero/idleDown-sword.png",
+    idleleftSword : "./img/actors/hero/idleLeft-sword.png",
+    idlerightSword : "./img/actors/hero/idleright-sword.png",
+    idletopSword : "./img/actors/hero/idleUp-sword.png",
 }
 
 const DoorAnimList = {

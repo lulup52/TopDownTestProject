@@ -487,6 +487,30 @@ const player = new Player({
             loop : true,
             imageSrc : HeroAnimList.walkdownSword,
         },    
+        idledownSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.idledownSword,
+        },    
+        idleleftSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.idleleftSword,
+        },    
+        idlerightSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.idlerightSword,
+        },    
+        idletopSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.idletopSword,
+        },    
         walkInDoor : {
             frameNumber: 12,
             frameBuffer : 6,
@@ -589,13 +613,13 @@ function animate(){
             player.lastDirection = "down"
         } else {
             if (player.lastDirection === "left") {
-                player.switchSprite("idleleft")
+                player.switchSprite(`idleleft${action}`)
             } else if (player.lastDirection === "right") {
-                player.switchSprite("idleright")
+                player.switchSprite(`idleright${action}`)
             } else if (player.lastDirection === "up") {
-                player.switchSprite("idletop")
+                player.switchSprite(`idletop${action}`)
             } else if (player.lastDirection === "down") {
-                player.switchSprite("idledown")
+                player.switchSprite(`idledown${action}`)
             }
     
         }
