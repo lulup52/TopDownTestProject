@@ -20,6 +20,7 @@ const HeroAnimList = {
 
 const DoorAnimList = {
     doorOppening: "./img/props/doorOpen.png",
+    doorTransparentOppening: "./img/props/doorTransparentOpen.png",
 }
 const ChestAnimList = {
     chestOppening: "./img/props/chestOpen.png",

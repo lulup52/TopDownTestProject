@@ -43,6 +43,36 @@ let levels = {
             doors = [
                 new Sprite({
                     position : {
+                        x: 770,
+                        y: 192,
+                    },
+                    imageSrc : DoorAnimList.doorTransparentOppening,
+                    frameNumber : 6,
+                    frameBuffer : 3,
+                    loop: false,
+                    autoplay : false,
+                    hitbox : {
+                        position : {
+                            x: 770,
+                            y: 192 ,
+                        },
+                        width : 64, 
+                        height: 64,
+                    },
+                    hitboxAction : {
+                        color: "rgba(0,255,255,0.4)",
+                        position : {
+                            x: 770,
+                            y: 256 ,
+                        },
+                        width : 64, 
+                        height: 20,
+                    },
+                    id : "oppenable00",
+                    
+                }),
+                new Sprite({
+                    position : {
                         x: 448,
                         y: 64,
                     },
@@ -54,28 +84,7 @@ let levels = {
                     hitbox : {
                         position : {
                             x: 448,
-                            y: 64 ,
-                        },
-                        width : 64, 
-                        height: 64,
-                    },
-                    id : "porte00",
-                    
-                }),
-                new Sprite({
-                    position : {
-                        x: 448,
-                        y: 440,
-                    },
-                    imageSrc : DoorAnimList.doorOppening,
-                    frameNumber : 6,
-                    frameBuffer : 3,
-                    loop: false,
-                    autoplay : false,
-                    hitbox : {
-                        position : {
-                            x: 448,
-                            y: 440 ,
+                            y: 64,
                         },
                         width : 64, 
                         height: 64,
@@ -84,7 +93,7 @@ let levels = {
                         color: "rgba(0,255,255,0.4)",
                         position : {
                             x: 448,
-                            y: 504 ,
+                            y: 128,
                         },
                         width : 64, 
                         height: 20,
@@ -227,8 +236,8 @@ let levels = {
             questItems = [
                 new Sprite({
                     position : {
-                        x: 700,
-                        y: 400,
+                        x: 765,
+                        y: 100,
                     },
                     imageSrc : questItemsAnimList.sword,
                     frameNumber : 1,
@@ -246,8 +255,8 @@ let levels = {
                     hitboxAction : {
                         color: "rgba(0,255,255,0.4)",
                         position : {
-                            x: 700,
-                            y: 400 ,
+                            x: 765,
+                            y: 100 ,
                         },
                         width : 64, 
                         height: 64,

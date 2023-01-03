@@ -29,6 +29,11 @@ window.addEventListener('keydown', (event) => {
                         if (actor.id.includes("porte")) {
                             globalEvents.specialAnimationPlayed = "enter"
                         }
+                        if (actor.id.includes("oppenable")) {
+                            console.log(actor.hitbox)
+                            actor.hitbox = ""
+                            console.log(actor.hitbox)
+                        }
                     } else {
     
                     }
