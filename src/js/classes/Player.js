@@ -39,6 +39,7 @@ class Player extends Sprite {
         this.colideWithObject()
     }
     switchSprite(name) {
+        console.log(name)
         if (this.image === this.animations[name].image) {
             return
         }

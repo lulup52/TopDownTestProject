@@ -467,7 +467,25 @@ const player = new Player({
             frameNumber: 6,
             frameBuffer : 8,
             loop : true,
-            imageSrc : HeroAnimList.WalkDown,
+            imageSrc : HeroAnimList.walkrightSword,
+        },    
+        walkleftSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.walkleftSword,
+        },    
+        walktopSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.walkupSword,
+        },    
+        walkdownSword : {
+            frameNumber: 6,
+            frameBuffer : 8,
+            loop : true,
+            imageSrc : HeroAnimList.walkdownSword,
         },    
         walkInDoor : {
             frameNumber: 12,
@@ -547,25 +565,25 @@ function animate(){
         if (equipedItems.weapons.includes("questItems-sword")) {
             action = "Sword"
         }
-        console.log(`walkright${action}`)
 
         if(keys.d.pressed){
             player.switchSprite(`walkright${action}`)
             player.velocity.x = player.moveSpeed
             player.velocity.y = 0
             player.lastDirection = "right"
+
         }else if(keys.q.pressed){
-            player.switchSprite("walkleft")
+            player.switchSprite(`walkleft${action}`)
             player.velocity.x = -player.moveSpeed
             player.velocity.y = 0
             player.lastDirection = "left"
         }else if(keys.z.pressed){
-            player.switchSprite("walktop")
+            player.switchSprite(`walktop${action}`)
             player.velocity.y = -player.moveSpeed
             player.velocity.x = 0
             player.lastDirection = "up"
         }else if(keys.s.pressed){
-            player.switchSprite("walkdown")
+            player.switchSprite(`walkdown${action}`)
             player.velocity.y = player.moveSpeed
             player.velocity.x = 0
             player.lastDirection = "down"
