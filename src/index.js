@@ -114,14 +114,14 @@ let levels = {
                 })
             ]
             chest = [
-                new Sprite({
+                new InteractiveObject({
                     position : {
                         x: 128,
                         y: 128,
                     },
                     imageSrc : ChestAnimList.chestOppening,
                     frameNumber : 4,
-                    frameBuffer : 3,
+                    frameBuffer : 6,
                     hitbox : {
                         position : {
                             x: 128,
@@ -141,7 +141,7 @@ let levels = {
                     },
                     loop: false,
                     autoplay : false,
-                    id : "chest00"
+                    id : "chest00",
                 }),
             ]
             coins = [

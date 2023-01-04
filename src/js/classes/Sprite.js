@@ -9,7 +9,8 @@ class Sprite{
         loop = true, 
         autoplay = true,
         hitbox =false,
-        hitboxAction = false
+        hitboxAction = false,
+        itemContent = false
 
     }){
         this.id = id
