@@ -43,7 +43,6 @@ class Sprite{
     }
     erase() {
         // a fixer, ramasser une pièce les suprime toutes !!!!!!!!!!!
-        console.log(this.id)
         colidableActors.forEach(props => {
             if (this.id.includes(props.name)) {
                 props.content.forEach(uniqueProp => {
@@ -119,7 +118,7 @@ class Sprite{
     }
 
     updateFrames() {
-        
+       
         if (!this.autoplay) {
             return
         }

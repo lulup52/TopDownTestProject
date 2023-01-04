@@ -59,6 +59,14 @@ let levels = {
                         width : 64, 
                         height: 64,
                     },
+                    animations : {
+                        doorTransparentOppening : {
+                            frameNumber: 6,
+                            frameBuffer : 3,
+                            loop : false,
+                            imageSrc : DoorAnimList.doorTransparentOppening,
+                        },
+                    },
                     hitboxAction : {
                         color: "rgba(0,255,255,0.4)",
                         position : {
@@ -413,7 +421,6 @@ let levels = {
 // }
 
 
-console.log()
 let globalEvents = {
     principalItemHolded : "",
     playerActionActivated : "no",

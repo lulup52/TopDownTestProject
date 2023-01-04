@@ -14,41 +14,19 @@ class InteractiveObject extends Sprite {
         id = "none",
         to = "",
         itemContent = "",
-        currentAnimation = ""
 
         }) {
         super({ imageSrc, frameNumber, frameBuffer, animations, hitbox, hitboxAction,id,loop,autoplay,position,to })
-        
+        this.animations = animations
         if (animations){
-            console.log(animations)
-            this.image = this.animations.chestOppening.image
-            this.frameNumber = this.animations.chestOppening.frameNumber
-            this.frameBuffer = this.animations.chestOppening.frameBuffer
-            this.currentAnimation = this.animations.chestOppening
+            
+            this.image = this.animations[`${Object.keys(this.animations)[0]}`].image
+            this.frameNumber = this.animations[`${Object.keys(this.animations)[0]}`].frameNumber
+            this.frameBuffer = this.animations[`${Object.keys(this.animations)[0]}`].frameBuffer
+            this.currentAnimation = this.animations[`${Object.keys(this.animations)[0]}`]
         }
         this.to = to
     
     }
-    updateFrames() {
-        
-        if (!this.autoplay) {
-            return
-        }
-        this.elapsedFrame++
-
-        if (this.elapsedFrame % this.frameBuffer === 0) {
-            if (this.curentFrame < this.frameNumber - 1) {
-                this.curentFrame++
-
-            } else if (this.loop) {
-                this.curentFrame = 0
-            }
-        }
-        if (this.currentAnimation?.onComplete) {
-            if(this.curentFrame === 1 && !this.currentAnimation.isActive) {
-                this.currentAnimation.onComplete()
-                this.currentAnimation.isActive = true
-            }
-        }
-    }
+    
 }
