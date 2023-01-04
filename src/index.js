@@ -41,7 +41,7 @@ let levels = {
             
             })
             doors = [
-                new Sprite({
+                new InteractiveObject({
                     position : {
                         x: 770,
                         y: 192,
@@ -71,7 +71,7 @@ let levels = {
                     id : "oppenable00",
                     
                 }),
-                new Sprite({
+                new InteractiveObject({
                     position : {
                         x: 448,
                         y: 64,
@@ -98,20 +98,10 @@ let levels = {
                         width : 64, 
                         height: 20,
                     },
-                    id : "porte01"
+                    id : "porte01",
+                    to : "1"
                 }),
-                new Sprite({
-                    position : {
-                        x: 550,
-                        y: 440,
-                    },
-                    imageSrc : DoorAnimList.doorOppening,
-                    frameNumber : 6,
-                    frameBuffer : 3,
-                    loop: false,
-                    autoplay : false,
-                    id : "porte02"
-                })
+              
             ]
             chest = [
                 new InteractiveObject({
@@ -142,6 +132,17 @@ let levels = {
                     loop: false,
                     autoplay : false,
                     id : "chest00",
+                    itemContent : "key01",
+                    onComplete : () => {console.log('rururu')},
+                    animations : {
+                        chestOppening : {
+                            frameNumber: 4,
+                            frameBuffer : 8,
+                            loop : true,
+                            imageSrc : ChestAnimList.chestOppening,
+                        },
+                    },
+                    
                 }),
             ]
             coins = [

@@ -10,8 +10,6 @@ class Sprite{
         autoplay = true,
         hitbox =false,
         hitboxAction = false,
-        itemContent = false
-
     }){
         this.id = id
         this.position = position
@@ -121,6 +119,7 @@ class Sprite{
     }
 
     updateFrames() {
+        
         if (!this.autoplay) {
             return
         }

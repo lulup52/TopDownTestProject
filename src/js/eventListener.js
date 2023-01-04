@@ -26,9 +26,12 @@ window.addEventListener('keydown', (event) => {
                 actorType.content.forEach(actor => {
                     if (globalEvents.playerActionActivated === actor.id) {
                         actor.play()
-                        if (actor.id.includes("porte")) {
-                            globalEvents.specialAnimationPlayed = "enter"
+                        if (actor.to !== "") {
+                            if (actor.id.includes("porte")) {
+                                globalEvents.specialAnimationPlayed = "enter"
+                            }
                         }
+                        
                         if (actor.id.includes("oppenable")) {
                             console.log(actor.hitbox)
                             actor.hitbox = ""
