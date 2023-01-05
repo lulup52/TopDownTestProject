@@ -141,7 +141,6 @@ let levels = {
                     autoplay : false,
                     id : "chest00",
                     itemContent : "key01",
-                    onComplete : () => {console.log('rururu')},
                     animations : {
                         chestOppening : {
                             frameNumber: 4,

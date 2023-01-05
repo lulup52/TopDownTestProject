@@ -10,6 +10,7 @@ class Sprite{
         autoplay = true,
         hitbox =false,
         hitboxAction = false,
+        actionAnimComplete = false,
     }){
         this.id = id
         this.position = position
@@ -31,6 +32,9 @@ class Sprite{
         this.autoplay = autoplay
         this.hitboxAction = hitboxAction
         this.currentAnimation
+        this.actionAnimComplete = actionAnimComplete
+        
+        console.log(this.actionAnimComplete)
         //create images for all animations
         if (this.animations) {
 
@@ -123,11 +127,14 @@ class Sprite{
             return
         }
         this.elapsedFrame++
+       
 
         if (this.elapsedFrame % this.frameBuffer === 0) {
             if (this.curentFrame < this.frameNumber - 1) {
                 this.curentFrame++
-
+                if (this.actionAnimComplete && this.curentFrame === this.frameNumber - 1) {
+                    this.actionAnimComplete()
+                }
             } else if (this.loop) {
                 this.curentFrame = 0
             }
