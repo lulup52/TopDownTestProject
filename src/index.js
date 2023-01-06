@@ -66,6 +66,12 @@ let levels = {
                             frameBuffer : 3,
                             loop : false,
                             imageSrc : DoorAnimList.doorTransparentOppening,
+                            onCompleteWithTransition : () => {
+                                player.toNewLocation =  {
+                                    x: 350,
+                                    y: 350
+                                }
+                            }
                         },
                     },
                     hitboxAction : {
@@ -78,6 +84,7 @@ let levels = {
                         height: 20,
                     },
                     id : "unlockable-door-00",
+                   
                     
                 }),
                 new InteractiveObject({
@@ -85,11 +92,19 @@ let levels = {
                         x: 448,
                         y: 64,
                     },
+                   
+                    animations : {
+                        doorOppening : {
+                            frameNumber : 6,
+                            frameBuffer : 3,
+                            loop : false,
+                            autoplay : false,
+                            imageSrc : DoorAnimList.doorOppening,
+
+                        },
+                    },
                     imageSrc : DoorAnimList.doorOppening,
-                    frameNumber : 6,
-                    frameBuffer : 3,
-                    loop: false,
-                    autoplay : false,
+
                     hitbox : {
                         position : {
                             x: 448,
@@ -108,7 +123,12 @@ let levels = {
                         height: 20,
                     },
                     id : "porte01",
-                    to : "1"
+                    to : "1",
+                    
+                    toPlayerPosition : {
+                        x: 448,
+                        y: 128,
+                    }
                 }),
               
             ]
@@ -539,15 +559,26 @@ const player = new Player({
                     duration: 1,
                     opacity : 1,
                     onComplete : () => {
+                        // if (player.toNewLocation !== "") {
+                        //     player.position = player.toNewLocation
+                        //     player.toNewLocation = ""
+        
+                        // }
+                        console.log(player.position)
+                        console.log(player.toNewLocation)
                         lvl++
                         levels[lvl].init()
                         gsap.to(overlay, {
                             duration: 1,
                             opacity : 0,
+                           
                         })
+                       
                     }
                 })
+               
             }
+            
         },  
         heroGetKey : {
             frameNumber: 5,

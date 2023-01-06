@@ -11,6 +11,7 @@ class Sprite{
         hitbox =false,
         hitboxAction = false,
         actionAnimComplete = false,
+        toPlayerPosition = ""
     }){
         this.id = id
         this.position = position
@@ -34,7 +35,6 @@ class Sprite{
         this.currentAnimation
         this.actionAnimComplete = actionAnimComplete
         this.pausee = false
-        console.log(this.actionAnimComplete)
         //create images for all animations
         if (this.animations) {
 
@@ -154,7 +154,6 @@ class Sprite{
                 this.currentAnimation.onCompleteWithTransition()
                 this.currentAnimation.isActive = true
             }
-            
         }
         if (this.currentAnimation?.onCompleteWithAction) {
             if(this.curentFrame === this.frameNumber - 1 && !this.currentAnimation.isActive) {
@@ -168,4 +167,5 @@ class Sprite{
             }
         }
     }
+    
 }   

@@ -14,7 +14,7 @@ class InteractiveObject extends Sprite {
         id = "none",
         to = "",
         itemContent = false,
-        actionAnimComplete = ""
+        actionAnimComplete = "",
         }) {
         super({ imageSrc, frameNumber, frameBuffer, animations, hitbox, hitboxAction,id,loop,autoplay,position,to, actionAnimComplete })
         this.animations = animations
