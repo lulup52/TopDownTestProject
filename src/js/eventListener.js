@@ -25,20 +25,24 @@ window.addEventListener('keydown', (event) => {
             colidableActors.forEach(actorType => {
                 actorType.content.forEach(actor => {
                     if (globalEvents.playerActionActivated === actor.id) {
-                        actor.play()
+                        
+                        if (actor.id.includes("oppenable")) {
+                            actor.play()
+                        }
                         if (actor.to !== "") {
+                            actor.play()
                             if (actor.id.includes("porte")) {
                                 globalEvents.specialAnimationPlayed = "enter"
                             }
+                        } else {
+                            if (actor.id.includes("unlockable-door")) {
+                                if (equipedItems.keykItems.includes('key01')) {
+                                    actor.play()
+                                    actor.hitbox = ""
+                                }
+                           
+                            }
                         }
-                        
-                        if (actor.id.includes("oppenable")) {
-                            console.log(actor.hitbox)
-                            actor.hitbox = ""
-                            console.log(actor.hitbox)
-                        }
-                    } else {
-    
                     }
                 })
             })

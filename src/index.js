@@ -24,6 +24,7 @@ let inventory = {
 let equipedItems = {
     weapons : [],
     stuf : [],
+    keykItems : []
 }
 
 let lvl = 1
@@ -76,7 +77,7 @@ let levels = {
                         width : 64, 
                         height: 20,
                     },
-                    id : "oppenable00",
+                    id : "unlockable-door-00",
                     
                 }),
                 new InteractiveObject({
@@ -139,7 +140,7 @@ let levels = {
                     },
                     loop: false,
                     autoplay : false,
-                    id : "chest00",
+                    id : "oppenable-chest00",
                     itemContent : "key01",
                     animations : {
                         chestOppening : {
@@ -556,6 +557,7 @@ const player = new Player({
             imageSrc : HeroAnimList.heroGetKey,
             onCompleteWithAction : () => {
                   globalEvents.specialAnimationPlayed = ''
+
 
             }
         },   

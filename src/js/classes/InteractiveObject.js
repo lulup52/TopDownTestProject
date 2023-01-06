@@ -21,7 +21,7 @@ class InteractiveObject extends Sprite {
         this.itemContent = itemContent
         if (this.itemContent) {
             this.actionAnimComplete = () => {
-                console.log(this.itemContent)
+                equipedItems.keykItems.push(this.itemContent)
                 globalEvents.specialAnimationPlayed = "heroGetKey"
 
             }
