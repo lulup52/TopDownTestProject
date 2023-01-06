@@ -532,7 +532,7 @@ const player = new Player({
             frameBuffer : 6,
             loop : false,
             imageSrc : HeroAnimList.walkInDoor,
-            onComplete : () => {
+            onCompleteWithTransition : () => {
 
                 gsap.to(overlay, {
                     duration: 1,
@@ -547,7 +547,18 @@ const player = new Player({
                     }
                 })
             }
-        },    
+        },  
+        heroGetKey : {
+            frameNumber: 5,
+            frameBuffer : 8,
+            loop : false,
+            autoplay : false,
+            imageSrc : HeroAnimList.heroGetKey,
+            onCompleteWithAction : () => {
+                  globalEvents.specialAnimationPlayed = ''
+
+            }
+        },   
         
     },
     colidableActors,
@@ -600,6 +611,9 @@ function animate(){
             globalEvents.specialAnimationPlayed = ''
             return
         }
+    } else if (globalEvents.specialAnimationPlayed === "heroGetKey") {
+        player.switchSprite("heroGetKey")
+        
     } else {
         let action = ""
         if (equipedItems.weapons.includes("questItems-sword")) {

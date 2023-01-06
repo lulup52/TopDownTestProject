@@ -33,7 +33,7 @@ class Sprite{
         this.hitboxAction = hitboxAction
         this.currentAnimation
         this.actionAnimComplete = actionAnimComplete
-        
+        this.pausee = false
         console.log(this.actionAnimComplete)
         //create images for all animations
         if (this.animations) {
@@ -120,18 +120,28 @@ class Sprite{
     play() {
         this.autoplay = true
     }
-
+    pause() {
+        if(this.pause) {
+            console.log('pose')
+        } else {
+            console.log('unpose')
+            
+        }
+        this.pausee = !this.pausee
+    }
     updateFrames() {
-       
+        if(this.pausee) {
+            return
+        }
         if (!this.autoplay) {
             return
         }
         this.elapsedFrame++
-       
 
         if (this.elapsedFrame % this.frameBuffer === 0) {
             if (this.curentFrame < this.frameNumber - 1) {
                 this.curentFrame++
+               
                 if (this.actionAnimComplete && this.curentFrame === this.frameNumber - 1) {
                     this.actionAnimComplete()
                 }
@@ -139,10 +149,22 @@ class Sprite{
                 this.curentFrame = 0
             }
         }
-        if (this.currentAnimation?.onComplete) {
+        if (this.currentAnimation?.onCompleteWithTransition) {
             if(this.curentFrame === 1 && !this.currentAnimation.isActive) {
-                this.currentAnimation.onComplete()
+                this.currentAnimation.onCompleteWithTransition()
                 this.currentAnimation.isActive = true
+            }
+            
+        }
+        if (this.currentAnimation?.onCompleteWithAction) {
+            if(this.curentFrame === this.frameNumber - 1 && !this.currentAnimation.isActive) {
+                this.pause()
+                setTimeout(() => {
+                this.pause()
+                    this.currentAnimation.onCompleteWithAction()
+                    this.currentAnimation.isActive = true                  
+                }, 2000)
+               
             }
         }
     }
