@@ -31,12 +31,15 @@ window.addEventListener('keydown', (event) => {
                         }
                         if (actor.to !== "") {
                             actor.play()
-                            if (actor.id.includes("porte")) {
+                            if (actor.id.includes("destination-door")) {
                                 globalEvents.specialAnimationPlayed = "enter"
                             }
                         } else {
                             if (actor.id.includes("unlockable-door")) {
-                                if (equipedItems.keykItems.includes('key01')) {
+                                console.log(actor)
+
+                                console.log(actor.itemReqToActive)
+                                if (equipedItems.keykItems.includes(actor.itemReqToActive)) {
                                     actor.play()
                                     actor.hitbox = ""
                                 }

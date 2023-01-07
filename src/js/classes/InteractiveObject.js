@@ -15,10 +15,12 @@ class InteractiveObject extends Sprite {
         to = "",
         itemContent = false,
         actionAnimComplete = "",
+        itemReqToActive = ""
         }) {
         super({ imageSrc, frameNumber, frameBuffer, animations, hitbox, hitboxAction,id,loop,autoplay,position,to, actionAnimComplete })
         this.animations = animations
         this.itemContent = itemContent
+        this.itemReqToActive = itemReqToActive
         if (this.itemContent) {
             this.actionAnimComplete = () => {
                 equipedItems.keykItems.push(this.itemContent)

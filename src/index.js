@@ -66,12 +66,7 @@ let levels = {
                             frameBuffer : 3,
                             loop : false,
                             imageSrc : DoorAnimList.doorTransparentOppening,
-                            onCompleteWithTransition : () => {
-                                player.toNewLocation =  {
-                                    x: 350,
-                                    y: 350
-                                }
-                            }
+                           
                         },
                     },
                     hitboxAction : {
@@ -83,6 +78,7 @@ let levels = {
                         width : 64, 
                         height: 20,
                     },
+                    itemReqToActive : "key01",
                     id : "unlockable-door-00",
                    
                     
@@ -100,7 +96,13 @@ let levels = {
                             loop : false,
                             autoplay : false,
                             imageSrc : DoorAnimList.doorOppening,
-
+                            onCompleteWithTransition : () => {
+                                player.lastDirection = "down"
+                                player.toNewLocation =  {
+                                    x: 448,
+                                    y: 128 - player.hitbox.height,
+                                }
+                            }
                         },
                     },
                     imageSrc : DoorAnimList.doorOppening,
@@ -122,7 +124,7 @@ let levels = {
                         width : 64, 
                         height: 20,
                     },
-                    id : "porte01",
+                    id : "destination-door-00",
                     to : "1",
                     
                     toPlayerPosition : {
@@ -559,13 +561,11 @@ const player = new Player({
                     duration: 1,
                     opacity : 1,
                     onComplete : () => {
-                        // if (player.toNewLocation !== "") {
-                        //     player.position = player.toNewLocation
-                        //     player.toNewLocation = ""
-        
-                        // }
-                        console.log(player.position)
-                        console.log(player.toNewLocation)
+                        if (player.toNewLocation !== "") {
+                            player.position = player.toNewLocation
+                            player.toNewLocation = ""
+                        }
+
                         lvl++
                         levels[lvl].init()
                         gsap.to(overlay, {
