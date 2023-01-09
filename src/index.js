@@ -319,14 +319,15 @@ let levels = {
     },
     2 : {
         init : () => {
-            parsedCollisions = collisionsLvl1.parse2D()
+            console.log(collisionsLvl2)
+            parsedCollisions = collisionsLvl2.parse2D()
             colisionBlocks = parsedCollisions.createObjectsFrom2D()
             background = new Sprite({
                 position: {
                     x: 0,
                     y: 0,
                 },
-                imageSrc : './img/mapBg/testTopDownLvl1.png',
+                imageSrc : './img/mapBg/lvl2topdown.png',
             
             })
             doors = [

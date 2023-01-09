@@ -3,13 +3,22 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "lvl1/lvl1test.tmx",
+    "activeFile": "colisions/COL-lvl1Map.tmx.js",
     "expandedProjectPaths": [
+        "colisions",
         "."
     ],
     "fileStates": {
         "HeroAnmi.tsx": {
             "scaleInDock": 1
+        },
+        "colisions/COL-lvl1Map.tmx.js": {
+            "scale": 0.465,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 646.2365591397848,
+                "y": 316.1290322580645
+            }
         },
         "collision64*64.tsx": {
             "scaleInDock": 1
@@ -18,11 +27,11 @@
             "scaleInDock": 0.6644
         },
         "lvl1/lvl1test.tmx": {
-            "scale": 2.1567,
+            "scale": 1.139,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 532.5265451847731,
-                "y": 162.74864376130196
+                "x": 551.7998244073749,
+                "y": 256.36523266022823
             }
         }
     },
@@ -34,11 +43,13 @@
     "map.tileWidth": 64,
     "map.width": 16,
     "openFiles": [
-        "lvl1/lvl1test.tmx"
+        "lvl1/lvl1test.tmx",
+        "colisions/COL-lvl1Map.tmx.js"
     ],
     "project": "lvl1MapMetdieval.tiled-project",
     "recentFiles": [
-        "lvl1/lvl1test.tmx"
+        "lvl1/lvl1test.tmx",
+        "colisions/COL-lvl1Map.tmx.js"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
