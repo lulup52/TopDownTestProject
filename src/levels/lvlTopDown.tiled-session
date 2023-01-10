@@ -3,8 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "lvl2topdown.tmx",
     "expandedProjectPaths": [
+        ".",
+        "allLevels"
     ],
     "fileStates": {
         "allLevels/collisions.tsx": {
@@ -12,8 +14,19 @@
             "scaleInEditor": 1
         },
         "allLevels/fond-allLevels-Tileset.tsx": {
-            "scaleInDock": 0.6459,
+            "scaleInDock": 0.4809,
             "scaleInEditor": 0.44
+        },
+        "lvl2topdown.tmx": {
+            "expandedGroupLayers": [
+                3
+            ],
+            "scale": 0.6056,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 473.0845442536329,
+                "y": 257.5957727873183
+            }
         }
     },
     "last.exportedFilePath": "/Applications/MAMP/htdocs/devPerso/TopDownTestProject/src/levels/colisions",
@@ -25,9 +38,11 @@
     "map.tileWidth": 64,
     "map.width": 16,
     "openFiles": [
+        "lvl2topdown.tmx"
     ],
     "project": "lvlTopDown.tiled-project",
     "recentFiles": [
+        "lvl2topdown.tmx",
         "allLevels/collisions.tsx",
         "allLevels/fond-allLevels-Tileset.tsx"
     ],

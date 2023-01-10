@@ -27,8 +27,8 @@ class Player extends Sprite {
         this.actionAvailable = ""
         this.overlapedDoor = ""
         this.hitBox = hitBox
+
     }
-    
     update() {
         this.position.x += this.velocity.x
         this.updateHitbox()
