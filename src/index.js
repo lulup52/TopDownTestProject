@@ -29,164 +29,49 @@ let equipedItems = {
 }
 
 let lvl = 1
-console.log()
-let levels = {
-    1 : {
-        init : () => {
-            parsedCollisions = allCollisions[`lvl${lvl}`].parse2D()
-            colisionBlocks = parsedCollisions.createObjectsFrom2D()
-            background = new Sprite({
-                position: {
-                    x: 0,
-                    y: 0,
-                },
-                imageSrc : `./img/mapBg/testTopDownLvl${lvl}.png`,
-            
-            })
-            doors = lvlDatas[`lvl${lvl}`].doors
-            chest = lvlDatas[`lvl${lvl}`].chest
-            coins = lvlDatas[`lvl${lvl}`].coins
-            questItems =  lvlDatas[`lvl${lvl}`].questItems
 
-            colidableActors = [
-                {
-                    name: 'door',
-                    content : doors,
-                },
-                {
-                    name: 'chest',
-                    content : chest
-                },
-                {
-                    name: 'coin',
-                    content : coins
-                },
-                {
-                    name: 'questItems',
-                    content : questItems,
-                },
-            ]
-            player.colisionBlocks =  colisionBlocks
-        }
-    },
-    2 : {
-        init : () => {
-            parsedCollisions = allCollisions[`lvl${lvl}`].parse2D()
-            colisionBlocks = parsedCollisions.createObjectsFrom2D()
-            background = new Sprite({
-                position: {
-                    x: 0,
-                    y: 0,
-                },
-                imageSrc : './img/mapBg/lvl2topdown.png',
-            
-            })
-            doors = [
-                new Sprite({
-                    position : {
-                        x: 448,
-                        y: 64,
-                    },
-                    imageSrc : DoorAnimList.doorOppening,
-                    frameNumber : 6,
-                    frameBuffer : 3,
-                    loop: false,
-                    autoplay : false,
-                    hitbox : {
-                        position : {
-                            x: 448,
-                            y: 64 ,
-                        },
-                        width : 64, 
-                        height: 64,
-                    },
-                    id : "porte00",
-                    
-                }),
-                new Sprite({
-                    position : {
-                        x: 448,
-                        y: 440,
-                    },
-                    imageSrc : DoorAnimList.doorOppening,
-                    frameNumber : 6,
-                    frameBuffer : 3,
-                    loop: false,
-                    autoplay : false,
-                    hitbox : {
-                        position : {
-                            x: 448,
-                            y: 440 ,
-                        },
-                        width : 64, 
-                        height: 64,
-                    },
-                    hitboxAction : {
-                        color: "rgba(0,255,255,0.4)",
-                        position : {
-                            x: 448,
-                            y: 504 ,
-                        },
-                        width : 64, 
-                        height: 20,
-                    },
-                    id : "porte01"
-                }),
-                new Sprite({
-                    position : {
-                        x: 550,
-                        y: 440,
-                    },
-                    imageSrc : DoorAnimList.doorOppening,
-                    frameNumber : 6,
-                    frameBuffer : 3,
-                    loop: false,
-                    autoplay : false,
-                    id : "porte02"
-                })
-            ]
-            chest = [
-                new Sprite({
-                    position : {
-                        x: 256,
-                        y: 256,
-                    },
-                    imageSrc : ChestAnimList.chestOppening,
-                    frameNumber : 4,
-                    frameBuffer : 3,
-                    hitbox : {
-                        position : {
-                            x: 256,
-                            y: 256 ,
-                        },
-                        width : 64, 
-                        height: 64,
-                    },
-                    hitboxAction : {
-                        color: "rgba(0,255,255,0.4)",
-                        position : {
-                            x: 118,
-                            y: 128 ,
-                        },
-                        width : 84, 
-                        height: 74,
-                    },
-                    loop: false,
-                    autoplay : false,
-                    id : "chest00"
-                }),
-            ]
-            colidableActors = [
-                {content : doors},
-                {content : chest}
-            ]
-            player.colisionBlocks =  colisionBlocks
 
-        }
-    }
+const initialiseContent = () => {
+    parsedCollisions = allCollisions[`lvl${lvl}`].parse2D()
+    colisionBlocks = parsedCollisions.createObjectsFrom2D()
+    background = new Sprite({
+        position: {
+            x: 0,
+            y: 0,
+        },
+        imageSrc : `./img/mapBg/testTopDownLvl${lvl}.png`,
+    
+    })
+    doors = lvlDatas[`lvl${lvl}`].doors
+    chest = lvlDatas[`lvl${lvl}`].chest
+    coins = lvlDatas[`lvl${lvl}`].coins
+    questItems =  lvlDatas[`lvl${lvl}`].questItems
+
+    colidableActors = [
+        {
+            name: 'door',
+            content : lvlDatas[`lvl${lvl}`].doors,
+        },
+        {
+            name: 'chest',
+            content : lvlDatas[`lvl${lvl}`].chest
+        },
+        {
+            name: 'coin',
+            content : lvlDatas[`lvl${lvl}`].coins
+        },
+        {
+            name: 'questItems',
+            content : lvlDatas[`lvl${lvl}`].questItems,
+        },
+        {
+            name: 'transisionsBetweenLvls',
+            content : lvlDatas[`lvl${lvl}`].transisionsBetweenLvls,
+        },
+    ]
+    console.log(colidableActors)
+    player.colisionBlocks =  colisionBlocks
 }
-
-
 
 
 // const colidableActors = {
@@ -202,150 +87,9 @@ let globalEvents = {
 }
 
 const player = new Player({
-    imageSrc: HeroAnimList.iddleDown,
+    imageSrc: HeroAnimationsSprites.iddleDown,
     frameNumber : 6,
-    animations : {
-        idleright : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.idleRight,
-        },
-        idleleft : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.idleLeft,
-        },
-        idletop : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.idleUp,
-        },
-        idledown : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.iddleDown,
-        },
-        walkright : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.walkRight,
-            
-        },
-        walkleft : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.walkLeft,
-        },
-        walktop : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.walkUp,
-        },
-        walkdown : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.WalkDown,
-        },    
-        walkrightSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.walkrightSword,
-        },    
-        walkleftSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.walkleftSword,
-        },    
-        walktopSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.walkupSword,
-        },    
-        walkdownSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.walkdownSword,
-        },    
-        idledownSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.idledownSword,
-        },    
-        idleleftSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.idleleftSword,
-        },    
-        idlerightSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.idlerightSword,
-        },    
-        idletopSword : {
-            frameNumber: 6,
-            frameBuffer : 8,
-            loop : true,
-            imageSrc : HeroAnimList.idletopSword,
-        },    
-        walkInDoor : {
-            frameNumber: 12,
-            frameBuffer : 6,
-            loop : false,
-            imageSrc : HeroAnimList.walkInDoor,
-            onCompleteWithTransition : () => {
-
-                gsap.to(overlay, {
-                    duration: 1,
-                    opacity : 1,
-                    onComplete : () => {
-                        if (player.toNewLocation !== "") {
-                            player.position = player.toNewLocation
-                            player.toNewLocation = ""
-                        }
-
-                        lvl++
-                        levels[lvl].init()
-                        gsap.to(overlay, {
-                            duration: 1,
-                            opacity : 0,
-                           
-                        })
-                       
-                    }
-                })
-               
-            }
-            
-        },  
-        heroGetKey : {
-            frameNumber: 5,
-            frameBuffer : 8,
-            loop : false,
-            autoplay : false,
-            imageSrc : HeroAnimList.heroGetKey,
-            onCompleteWithAction : () => {
-                  globalEvents.specialAnimationPlayed = ''
-
-
-            }
-        },   
-        
-    },
+    animations : HeroAnimations,
     colidableActors,
     id : 'Player',
 })
@@ -382,7 +126,7 @@ function animate(){
         })
     })
     
-      c.save()
+    c.save()
     c.globalAlpha = overlay.opacity
     c.fillStyle = "black"
     c.fillRect(0,0,canvas.width, canvas.height)
@@ -450,7 +194,7 @@ function animate(){
   
 }
 
-levels[lvl].init()
+initialiseContent()
 animate()
 // action when press input
 

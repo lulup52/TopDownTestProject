@@ -142,11 +142,22 @@ class Player extends Sprite {
                         && this.hitbox.position.y + this.hitbox.height >= actor.hitboxAction.position.y 
                         && this.hitbox.position.y <= actor.hitboxAction.position.y + actor.hitboxAction.height 
                     ) {
+                        if (actor.id.includes("transitionto")) {
+                            gsapTransition(actor.to)
+
+                            player.toNewLocation =  {
+                                x: 448,
+                                y: 128 - player.hitbox.height,
+                            }
+                        }
                         if (actor.id.includes("coin") || actor.id.includes("sword")) {
                             actor.erase()
                         }
                             globalEvents.playerActionActivated = actor.id
                     }
+                }
+                if (actor.hitbox) {
+                    
                     if (globalEvents.specialAnimationPlayed === "") {
                         
                         if (
@@ -158,6 +169,9 @@ class Player extends Sprite {
                         ) {
                             //check colision with door
                             //colision in y to the botom
+                            // if () {
+
+                            // }
                             if (this.hitbox.position.y < actor.hitbox.position.y + actor.hitbox.height) {
     
                                 if (this.velocity.y < 0) {
