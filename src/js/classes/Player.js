@@ -143,11 +143,12 @@ class Player extends Sprite {
                         && this.hitbox.position.y <= actor.hitboxAction.position.y + actor.hitboxAction.height 
                     ) {
                         if (actor.id.includes("transitionto")) {
-                            gsapTransition(actor.to)
-
-                            player.toNewLocation =  {
-                                x: 448,
-                                y: 128 - player.hitbox.height,
+                            lvl = actor.to
+                            initialiseContent()
+                            console.log(actor.newPlayerDest)
+                            player.position =  {
+                                x: actor.newPlayerDest.x ? actor.newPlayerDest.x : player.position.x,
+                                y: actor.newPlayerDest.y,
                             }
                         }
                         if (actor.id.includes("coin") || actor.id.includes("sword")) {

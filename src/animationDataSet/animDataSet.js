@@ -35,7 +35,7 @@ const gsapTransition = (nextLvl) => {
             gsap.to(overlay, {
                 duration: 1,
                 opacity : 0,
-
+               
             })
         }
     })

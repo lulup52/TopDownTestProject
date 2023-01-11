@@ -69,7 +69,6 @@ const initialiseContent = () => {
             content : lvlDatas[`lvl${lvl}`].transisionsBetweenLvls,
         },
     ]
-    console.log(colidableActors)
     player.colisionBlocks =  colisionBlocks
 }
 

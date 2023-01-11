@@ -245,10 +245,14 @@ let lvlDatas = {
                     color: "rgba(255,0,0,0.4)",
                     position : {
                         x: 6 * 64,
-                        y: 564 ,
+                        y: 8 * 64 ,
                     },
                     width : 64 * 9, 
                     height: 64,
+                },
+                newPlayerDest : {
+                    x : false,
+                    y : -64,
                 },
                 id : "transitionto-lvl2-00",
                 to : 2,
@@ -382,6 +386,43 @@ let lvlDatas = {
             }),
         ],
         coins : [],
+        transisionsBetweenLvls : [
+            new InteractiveObject({
+                position : {
+                    x: 500,
+                    y: 500,
+                },
+                imageSrc : transisionContainer.container,
+                frameNumber : "",
+                frameBuffer : "",
+                hitbox : {
+                    position : {
+                        x: 0,
+                        y: 0 ,
+                    },
+                    width : 0, 
+                    height: 0,
+                },
+               
+                hitboxAction : {
+                    color: "rgba(255,0,0,0.4)",
+                    position : {
+                        x: 6 * 64,
+                        y: 0 ,
+                    },
+                    width : 64 * 9, 
+                    height: 64,
+                },
+                newPlayerDest : {
+                    x : false,
+                    y : -64,
+                },
+                id : "transitionto-lvl1-00",
+                to : 1,
+                
+            }),
+        ],
+
         questItems : [
             new Sprite({
                 position : {
