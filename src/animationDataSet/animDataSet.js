@@ -30,13 +30,7 @@ const gsapTransition = (nextLvl) => {
                 player.position = player.toNewLocation
                 player.toNewLocation = ""
             }
-            initialiseContent()
-
-            gsap.to(overlay, {
-                duration: 1,
-                opacity : 0,
-               
-            })
+            initialiseContent()           
         }
     })
 
