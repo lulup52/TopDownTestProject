@@ -133,7 +133,7 @@ class Player extends Sprite {
         for (let i = 0; i < colidableActors.length; i++) {
             for (let j = 0; j < colidableActors[i].content.length; j++) {
                 let actor = colidableActors[i].content[j]
-                if (actor.hitbox) {
+                if (actor.hitboxAction) {
                     if (
                         //check hitboxAction collision to let player activate the object
                         actor.hitboxAction 
@@ -142,19 +142,32 @@ class Player extends Sprite {
                         && this.hitbox.position.y + this.hitbox.height >= actor.hitboxAction.position.y 
                         && this.hitbox.position.y <= actor.hitboxAction.position.y + actor.hitboxAction.height 
                     ) {
-                        if (actor.id.includes("transitionto")) {
-                            lvl = actor.to
-                            initialiseContent()
-                            console.log(actor.newPlayerDest)
-                            player.position =  {
-                                x: actor.newPlayerDest.x ? actor.newPlayerDest.x : player.position.x,
-                                y: actor.newPlayerDest.y,
-                            }
+
+                        if (!haveJustTransiterd) {
+                            if (actor.id.includes("transitionto")) {
+                                lvl = actor.to
+                                initialiseContent()
+                                console.log(actor.newPlayerDest)
+                                player.position =  {
+                                    x: actor.newPlayerDest.x ? actor.newPlayerDest.x : player.position.x,
+                                    y: actor.newPlayerDest.y ? actor.newPlayerDest.y : player.position.y,
+                                }
+                                haveJustTransiterd = true
+                            }   
                         }
+                        
                         if (actor.id.includes("coin") || actor.id.includes("sword")) {
                             actor.erase()
                         }
                             globalEvents.playerActionActivated = actor.id
+                    } else {
+                        if (actor.id.includes("transitionto")) {
+                            if (haveJustTransiterd) {
+                                haveJustTransiterd = false
+                            }
+                        }
+
+                        
                     }
                 }
                 if (actor.hitbox) {

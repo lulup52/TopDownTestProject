@@ -245,7 +245,7 @@ let lvlDatas = {
                     color: "rgba(255,0,0,0.4)",
                     position : {
                         x: 6 * 64,
-                        y: 8 * 64 ,
+                        y: 9 * 64 + 25 ,
                     },
                     width : 64 * 9, 
                     height: 64,
@@ -408,14 +408,14 @@ let lvlDatas = {
                     color: "rgba(255,0,0,0.4)",
                     position : {
                         x: 6 * 64,
-                        y: 0 ,
+                        y: -64 ,
                     },
                     width : 64 * 9, 
                     height: 64,
                 },
                 newPlayerDest : {
                     x : false,
-                    y : -64,
+                    y : 64 * 9,
                 },
                 id : "transitionto-lvl1-00",
                 to : 1,

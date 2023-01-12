@@ -3,7 +3,7 @@ let debugWatcher = {
     drawHitbox : true
 }
 
-
+let haveJustTransiterd = false
 const canvas = document.querySelector("canvas")
 const c = canvas.getContext('2d')
 
@@ -112,7 +112,6 @@ const overlay = {
     opacity : 0,
 }
 function animate(){
-    
     window.requestAnimationFrame(animate)
 
     background.draw()
