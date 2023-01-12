@@ -516,14 +516,14 @@ let lvlDatas = {
                 hitboxAction : {
                     color: "rgba(255,0,0,0.4)",
                     position : {
-                        x: 15 * 64,
+                        x: 16 * 64,
                         y: 64 * 2 ,
                     },
                     width : 64, 
                     height: 64 * 5,
                 },
                 newPlayerDest : {
-                    x : -64,
+                    x : 0,
                     y : false,
                 },
                 id : "transitionto-lvl2-00",

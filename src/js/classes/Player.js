@@ -147,10 +147,11 @@ class Player extends Sprite {
                             if (actor.id.includes("transitionto")) {
                                 lvl = actor.to
                                 initialiseContent()
-                                console.log(actor.newPlayerDest)
+                                console.log(lvl)
+
                                 player.position =  {
-                                    x: actor.newPlayerDest.x ? actor.newPlayerDest.x : player.position.x,
-                                    y: actor.newPlayerDest.y ? actor.newPlayerDest.y : player.position.y,
+                                    x: actor.newPlayerDest.x !== false ? actor.newPlayerDest.x : player.position.x,
+                                    y: actor.newPlayerDest.y !== false ? actor.newPlayerDest.y : player.position.y,
                                 }
                                 haveJustTransiterd = true
                             }   
