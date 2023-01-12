@@ -28,7 +28,7 @@ let equipedItems = {
     keykItems : []
 }
 
-let lvl = 1
+let lvl = 3
 
 
 const initialiseContent = () => {

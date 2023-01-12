@@ -4,7 +4,8 @@
     ],
     "extensionsPath": "extensions",
     "folders": [
-        "."
+        ".",
+        "lvl3"
     ],
     "propertyTypes": [
     ]
