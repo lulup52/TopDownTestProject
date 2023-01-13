@@ -142,8 +142,7 @@ class Player extends Sprite {
                         && this.hitbox.position.y + this.hitbox.height >= actor.hitboxAction.position.y 
                         && this.hitbox.position.y <= actor.hitboxAction.position.y + actor.hitboxAction.height 
                     ) {
-
-                        if (!haveJustTransiterd) {
+                        
                             if (actor.id.includes("transitionto")) {
                                 lvl = actor.to
                                 initialiseContent()
@@ -155,7 +154,6 @@ class Player extends Sprite {
                                 }
                                 haveJustTransiterd = true
                             }   
-                        }
                         
                         if (actor.id.includes("coin") || actor.id.includes("sword")) {
                             actor.erase()

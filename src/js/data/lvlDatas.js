@@ -225,6 +225,8 @@ let lvlDatas = {
         ],
         transisionsBetweenLvls : [
             new InteractiveObject({
+                id : "transitionto-lvl2-00",
+                to : 2,
                 position : {
                     x: 500,
                     y: 500,
@@ -245,17 +247,16 @@ let lvlDatas = {
                     color: "rgba(255,0,0,0.4)",
                     position : {
                         x: 6 * 64,
-                        y: 9 * 64 + 25 ,
+                        y: (9 * 64) + 24,
                     },
                     width : 64 * 9, 
-                    height: 64,
+                    height: 1,
                 },
                 newPlayerDest : {
                     x : false,
-                    y : -64,
+                    y : -34 ,
                 },
-                id : "transitionto-lvl2-00",
-                to : 2,
+                
                 
             }),
             new InteractiveObject({
@@ -278,7 +279,7 @@ let lvlDatas = {
                 hitboxAction : {
                     color: "rgba(255,0,0,0.4)",
                     position : {
-                        x: -1 * 64,
+                        x: -1 * 64 - 24,
                         y: 2 * 64  ,
                     },
                     width : 64, 
@@ -422,6 +423,8 @@ let lvlDatas = {
         coins : [],
         transisionsBetweenLvls : [
             new InteractiveObject({
+                id : "transitionto-lvl3-01",
+                to : 3,
                 position : {
                     x: 500,
                     y: 500,
@@ -441,21 +444,22 @@ let lvlDatas = {
                 hitboxAction : {
                     color: "rgba(255,0,0,0.4)",
                     position : {
-                        x: -1 * 64,
+                        x: -10,
                         y: 2 * 64 ,
                     },
-                    width : 64, 
+                    width : 1, 
                     height: 64 * 5,
                 },
                 newPlayerDest : {
-                    x : 64 * 16,
+                    x : (64 * 16) - 20 ,
                     y : false,
                 },
-                id : "transitionto-lvl2-01",
-                to : 3,
+                
                 
             }),
             new InteractiveObject({
+                id : "transitionto-lvl1-00",
+                to : 1,
                 position : {
                     x: 500,
                     y: 500,
@@ -476,17 +480,16 @@ let lvlDatas = {
                     color: "rgba(255,0,0,0.4)",
                     position : {
                         x: 6 * 64,
-                        y: -64 ,
+                        y: -10,
                     },
                     width : 64 * 9, 
-                    height: 64,
+                    height: 1,
                 },
                 newPlayerDest : {
                     x : false,
-                    y : 64 * 9,
+                    y : 64 * 8,
                 },
-                id : "transitionto-lvl1-00",
-                to : 1,
+               
                 
             }),
         ],
@@ -531,6 +534,8 @@ let lvlDatas = {
         coins : [],
         transisionsBetweenLvls : [
             new InteractiveObject({
+                id : "transitionto-lvl2-00",
+                to : 2,
                 position : {
                     x: 500,
                     y: 500,
@@ -550,18 +555,17 @@ let lvlDatas = {
                 hitboxAction : {
                     color: "rgba(255,0,0,0.4)",
                     position : {
-                        x: 16 * 64,
+                        x: (16 * 64) + 24,
                         y: 64 * 2 ,
                     },
-                    width : 64, 
+                    width : 1, 
                     height: 64 * 5,
                 },
                 newPlayerDest : {
-                    x : 0,
+                    x : -40,
                     y : false,
                 },
-                id : "transitionto-lvl2-00",
-                to : 2,
+                
                 
             }),
         ],
@@ -596,14 +600,14 @@ let lvlDatas = {
                 hitboxAction : {
                     color: "rgba(255,0,0,0.4)",
                     position : {
-                        x: 16 * 64,
+                        x: 16 * 64 + 24,
                         y: 64 * 2 ,
                     },
                     width : 64, 
                     height: 64 * 5,
                 },
                 newPlayerDest : {
-                    x : 0,
+                    x : -40,
                     y : false,
                 },
                 id : "transitionto-lvl1-00",
