@@ -12,7 +12,7 @@ class Player extends Sprite {
             x: 350,
             y: 350
         }
-        this.moveSpeed = 3
+        this.moveSpeed = 5
 
         this.velocity = {
             x: 0,
@@ -152,22 +152,13 @@ class Player extends Sprite {
                                     x: actor.newPlayerDest.x !== false ? actor.newPlayerDest.x : player.position.x,
                                     y: actor.newPlayerDest.y !== false ? actor.newPlayerDest.y : player.position.y,
                                 }
-                                haveJustTransiterd = true
                             }   
                         
                         if (actor.id.includes("coin") || actor.id.includes("sword")) {
                             actor.erase()
                         }
                             globalEvents.playerActionActivated = actor.id
-                    } else {
-                        if (actor.id.includes("transitionto")) {
-                            if (haveJustTransiterd) {
-                                haveJustTransiterd = false
-                            }
-                        }
-
-                        
-                    }
+                    } 
                 }
                 if (actor.hitbox) {
                     
