@@ -258,6 +258,40 @@ let lvlDatas = {
                 to : 2,
                 
             }),
+            new InteractiveObject({
+                position : {
+                    x: 500,
+                    y: 500,
+                },
+                imageSrc : transisionContainer.container,
+                frameNumber : "",
+                frameBuffer : "",
+                hitbox : {
+                    position : {
+                        x: 0,
+                        y: 0 ,
+                    },
+                    width : 0, 
+                    height: 0,
+                },
+               
+                hitboxAction : {
+                    color: "rgba(255,0,0,0.4)",
+                    position : {
+                        x: -1 * 64,
+                        y: 2 * 64  ,
+                    },
+                    width : 64, 
+                    height: 5 *  64,
+                },
+                newPlayerDest : {
+                    x : 16 * 64,
+                    y : false,
+                },
+                id : "transitionto-lvl4-00",
+                to : 4,
+                
+            }),
         ],
         questItems : [
             new Sprite({
@@ -534,5 +568,51 @@ let lvlDatas = {
 
         questItems : [
         ]
-    }
+    },
+    "lvl4" : {
+        doors : [
+        ],
+        chest : [
+        ],
+        coins : [],
+        transisionsBetweenLvls : [
+            new InteractiveObject({
+                position : {
+                    x: 500,
+                    y: 500,
+                },
+                imageSrc : transisionContainer.container,
+                frameNumber : "",
+                frameBuffer : "",
+                hitbox : {
+                    position : {
+                        x: 0,
+                        y: 0 ,
+                    },
+                    width : 0, 
+                    height: 0,
+                },
+               
+                hitboxAction : {
+                    color: "rgba(255,0,0,0.4)",
+                    position : {
+                        x: 16 * 64,
+                        y: 64 * 2 ,
+                    },
+                    width : 64, 
+                    height: 64 * 5,
+                },
+                newPlayerDest : {
+                    x : 0,
+                    y : false,
+                },
+                id : "transitionto-lvl1-00",
+                to : 1,
+                
+            }),
+        ],
+
+        questItems : [
+        ]
+    },
 }

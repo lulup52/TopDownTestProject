@@ -32,7 +32,7 @@
             "scale": 0.6874511718749999,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 512.7636906030258,
+                "x": 510.58171745152356,
                 "y": 286.56580723062723
             }
         },
@@ -40,16 +40,16 @@
             "scale": 0.6874511718749999,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 446.57717167412466,
-                "y": 443.6678741387883
+                "x": 315.65878258399033,
+                "y": 382.57262589672564
             }
         },
         "lvl1/mapLvl3.tmx": {
             "scale": 0.57333984375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 483.13404871401804,
-                "y": 265.1132686084142
+                "x": 392.43740419008685,
+                "y": 167.4399591211037
             }
         },
         "lvl2topdown.tmx": {
@@ -61,6 +61,14 @@
             "viewCenter": {
                 "x": 371.66666666666663,
                 "y": 251.66666666666669
+            }
+        },
+        "mapLvl4.tmx": {
+            "scale": 0.57333984375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 462.20405382388003,
+                "y": 291.27576222108667
             }
         }
     },
@@ -79,10 +87,10 @@
     ],
     "project": "lvlTopDown.tiled-project",
     "recentFiles": [
+        "lvl1/lvl1test.tmx",
         "lvl2topdown.tmx",
         "lvl1/mapLvl1.tmx",
         "lvl1/mapLvl3.tmx",
-        "lvl1/lvl1test.tmx",
         "decorsTest64_64.tsx",
         "allLevels/collisions.tsx",
         "allLevels/fond-allLevels-Tileset.tsx"
