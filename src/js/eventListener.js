@@ -1,5 +1,27 @@
 window.addEventListener('keydown', (event) => {
     switch(event.key) {
+        case 'u':
+            keys.u.pressed = true
+            console.log("j'apui sur U") 
+            let lastInput = checkPlayerLastInput()
+            switch(lastInput) {
+                case 'left':
+                    player.velocity.x = -12
+                    break;
+                case 'right':
+                    player.velocity.x = 12
+                    break;
+                case 'up':
+                    player.velocity.y = -12
+                    break;
+                case 'down':
+                    player.velocity.y = 12
+                    break;
+            }
+            setTimeout(() => {
+                keys.u.pressed = false
+            }, 150);
+        break
         case 'w':
             console.log(inventory)
             console.log(equipedItems)
@@ -43,13 +65,8 @@ window.addEventListener('keydown', (event) => {
                                     actor.play()
                                     actor.hitbox = ""
                                 } else {
-                                    document.querySelector("#uiContainer #dialogContainer p").innerText = `j'ai besoin de ${actor.nameItemReqToActive}`
-                                    document.querySelector("#uiContainer").style.display = "flex"
-                                    setTimeout(() => {
-                                        document.querySelector("#uiContainer").style.display = "none"
-                                    }, 2500);
+                                    activeDialogContainer(actor.nameItemReqToActive, "itemReqToActive")
                                 }
-                           
                             }
                         }
                     }

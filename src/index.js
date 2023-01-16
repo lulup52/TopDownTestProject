@@ -2,6 +2,26 @@
 let debugWatcher = {
     drawHitbox : true
 }
+const checkPlayerLastInput = () => {
+    return player.lastDirection
+}
+const activeDialogContainer = (element, behavior) => {
+    let sentence = ""
+    switch(behavior) {
+        case 'itemReqToActive' :
+            sentence =  `j'ai besoin de ${element}`
+            break
+        case 'nameitemContent' :
+            sentence =  `Vous obtenez ${element}`
+            break
+    }
+
+    document.querySelector("#uiContainer #dialogContainer p").innerText = sentence
+    document.querySelector("#uiContainer").style.display = "flex"
+    setTimeout(() => {
+        document.querySelector("#uiContainer").style.display = "none"
+    }, 2500);
+}
 
 const canvas = document.querySelector("canvas")
 const c = canvas.getContext('2d')
@@ -27,7 +47,7 @@ let equipedItems = {
     keykItems : []
 }
 
-let lvl = 3
+let lvl = 1
 
 
 const initialiseContent = () => {
@@ -93,6 +113,9 @@ const player = new Player({
 })
 
 const keys = {
+    u: {
+        pressed: false
+    },
     z: {
         pressed: false
     },
@@ -128,59 +151,62 @@ function animate(){
     c.fillStyle = "black"
     c.fillRect(0,0,canvas.width, canvas.height)
     c.restore()
-    player.velocity.y = 0
-    player.velocity.x = 0
-    if (globalEvents.specialAnimationPlayed === "enter") {
-        player.switchSprite("walkInDoor")
-        player.velocity.y = -.4
-        if (player.curentFrame === 11) {
-            globalEvents.specialAnimationPlayed = ''
-            return
-        }
-    } else if (globalEvents.specialAnimationPlayed === "heroGetKey") {
-        player.switchSprite("heroGetKey")
-        
-    } else {
-        let action = ""
-        if (equipedItems.weapons.includes("questItems-sword")) {
-            action = "Sword"
-        }
-
-        if(keys.d.pressed){
-            player.switchSprite(`walkright${action}`)
-            player.velocity.x = player.moveSpeed
-            player.velocity.y = 0
-            player.lastDirection = "right"
-
-        }else if(keys.q.pressed){
-            player.switchSprite(`walkleft${action}`)
-            player.velocity.x = -player.moveSpeed
-            player.velocity.y = 0
-            player.lastDirection = "left"
-        }else if(keys.z.pressed){
-            player.switchSprite(`walktop${action}`)
-            player.velocity.y = -player.moveSpeed
-            player.velocity.x = 0
-            player.lastDirection = "up"
-        }else if(keys.s.pressed){
-            player.switchSprite(`walkdown${action}`)
-            player.velocity.y = player.moveSpeed
-            player.velocity.x = 0
-            player.lastDirection = "down"
+    if (!keys.u.pressed) {
+        player.velocity.y = 0
+        player.velocity.x = 0
+        if (globalEvents.specialAnimationPlayed === "enter") {
+            player.switchSprite("walkInDoor")
+            player.velocity.y = -.4
+            if (player.curentFrame === 11) {
+                globalEvents.specialAnimationPlayed = ''
+                return
+            }
+        } else if (globalEvents.specialAnimationPlayed === "heroGetKey") {
+            player.switchSprite("heroGetKey")
+            
         } else {
-            if (player.lastDirection === "left") {
-                player.switchSprite(`idleleft${action}`)
-            } else if (player.lastDirection === "right") {
-                player.switchSprite(`idleright${action}`)
-            } else if (player.lastDirection === "up") {
-                player.switchSprite(`idletop${action}`)
-            } else if (player.lastDirection === "down") {
-                player.switchSprite(`idledown${action}`)
+            let action = ""
+            if (equipedItems.weapons.includes("questItems-sword")) {
+                action = "Sword"
             }
     
-        }
+            if(keys.d.pressed){
+                player.switchSprite(`walkright${action}`)
+                player.velocity.x = player.moveSpeed
+                player.velocity.y = 0
+                player.lastDirection = "right"
+    
+            }else if(keys.q.pressed){
+                player.switchSprite(`walkleft${action}`)
+                player.velocity.x = -player.moveSpeed
+                player.velocity.y = 0
+                player.lastDirection = "left"
+            }else if(keys.z.pressed){
+                player.switchSprite(`walktop${action}`)
+                player.velocity.y = -player.moveSpeed
+                player.velocity.x = 0
+                player.lastDirection = "up"
+            }else if(keys.s.pressed){
+                player.switchSprite(`walkdown${action}`)
+                player.velocity.y = player.moveSpeed
+                player.velocity.x = 0
+                player.lastDirection = "down"
+            } else {
+                if (player.lastDirection === "left") {
+                    player.switchSprite(`idleleft${action}`)
+                } else if (player.lastDirection === "right") {
+                    player.switchSprite(`idleright${action}`)
+                } else if (player.lastDirection === "up") {
+                    player.switchSprite(`idletop${action}`)
+                } else if (player.lastDirection === "down") {
+                    player.switchSprite(`idledown${action}`)
+                }
         
+            }
+            
+        }
     }
+    
     
     
     

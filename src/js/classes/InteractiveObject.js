@@ -29,7 +29,7 @@ class InteractiveObject extends Sprite {
         this.nameitemContent = nameitemContent
         if (this.itemContent) {
             this.actionAnimComplete = () => {
-                console.log(`vous ramassez ${this.nameitemContent}`)
+                activeDialogContainer(this.nameitemContent, "nameitemContent")
                 equipedItems.keykItems.push(this.itemContent)
                 globalEvents.specialAnimationPlayed = "heroGetKey"
 
