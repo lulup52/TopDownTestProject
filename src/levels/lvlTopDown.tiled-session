@@ -3,11 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "lvl1/mapLvl3.tmx",
+    "activeFile": "mapLvl4.tmx",
     "expandedProjectPaths": [
-        "lvl1",
         ".",
-        "lvl3"
+        "allLevels",
+        "lvl3",
+        "lvl1"
     ],
     "fileStates": {
         "HeroAnmi.tsx": {
@@ -64,11 +65,11 @@
             }
         },
         "mapLvl4.tmx": {
-            "scale": 0.57333984375,
-            "selectedLayer": 0,
+            "scale": 0.3005,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 462.20405382388003,
-                "y": 291.27576222108667
+                "x": 672.2129783693845,
+                "y": 675.540765391015
             }
         }
     },
@@ -81,16 +82,17 @@
     "map.tileWidth": 64,
     "map.width": 16,
     "openFiles": [
-        "lvl1/mapLvl3.tmx",
+        "mapLvl4.tmx",
         "lvl1/mapLvl1.tmx",
-        "lvl2topdown.tmx"
+        "lvl1/mapLvl3.tmx"
     ],
     "project": "lvlTopDown.tiled-project",
     "recentFiles": [
+        "lvl1/mapLvl3.tmx",
+        "lvl1/mapLvl1.tmx",
+        "mapLvl4.tmx",
         "lvl1/lvl1test.tmx",
         "lvl2topdown.tmx",
-        "lvl1/mapLvl1.tmx",
-        "lvl1/mapLvl3.tmx",
         "decorsTest64_64.tsx",
         "allLevels/collisions.tsx",
         "allLevels/fond-allLevels-Tileset.tsx"

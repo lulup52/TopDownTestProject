@@ -42,6 +42,12 @@ window.addEventListener('keydown', (event) => {
                                 if (equipedItems.keykItems.includes(actor.itemReqToActive)) {
                                     actor.play()
                                     actor.hitbox = ""
+                                } else {
+                                    document.querySelector("#uiContainer #dialogContainer p").innerText = `j'ai besoin de ${actor.nameItemReqToActive}`
+                                    document.querySelector("#uiContainer").style.display = "flex"
+                                    setTimeout(() => {
+                                        document.querySelector("#uiContainer").style.display = "none"
+                                    }, 2500);
                                 }
                            
                             }

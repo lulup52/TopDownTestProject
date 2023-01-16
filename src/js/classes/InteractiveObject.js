@@ -16,15 +16,20 @@ class InteractiveObject extends Sprite {
         itemContent = false,
         actionAnimComplete = "",
         itemReqToActive = "",
-        newPlayerDest = ""
+        newPlayerDest = "",
+        nameItemReqToActive = "",
+        nameitemContent = "",
         }) {
         super({ imageSrc, frameNumber, frameBuffer, animations, hitbox, hitboxAction,id,loop,autoplay,position,to, actionAnimComplete })
         this.animations = animations
         this.itemContent = itemContent
         this.itemReqToActive = itemReqToActive
         this.newPlayerDest = newPlayerDest
+        this.nameItemReqToActive = nameItemReqToActive
+        this.nameitemContent = nameitemContent
         if (this.itemContent) {
             this.actionAnimComplete = () => {
+                console.log(`vous ramassez ${this.nameitemContent}`)
                 equipedItems.keykItems.push(this.itemContent)
                 globalEvents.specialAnimationPlayed = "heroGetKey"
 

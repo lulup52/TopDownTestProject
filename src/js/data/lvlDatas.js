@@ -38,6 +38,7 @@ let lvlDatas = {
                     height: 20,
                 },
                 itemReqToActive : "key01",
+                nameItemReqToActive : "Clée de la cabane",
                 id : "unlockable-door-00",
                
                 
@@ -404,6 +405,7 @@ let lvlDatas = {
                 autoplay : false,
                 id : "oppenable-chest00",
                 itemContent : "key01",
+                nameitemContent : "Clée de la cabane",
                 animations : {
                     chestOppening : {
                         frameNumber: 4,
