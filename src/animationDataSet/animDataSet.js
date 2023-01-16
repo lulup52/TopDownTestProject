@@ -17,6 +17,7 @@ const HeroAnimationsSprites = {
     idlerightSword : "./img/actors/hero/idleright-sword.png",
     idletopSword : "./img/actors/hero/idleUp-sword.png",
     heroGetKey : "./img/actors/hero/heroGetKey.png",
+    rollRight : "./img/actors/hero/rollRight.png",
     rollLeft : "./img/actors/hero/rollLeft.png",
 }
 const gsapTransition = (nextLvl) => {
@@ -134,11 +135,17 @@ const HeroAnimations = {
         loop : true,
         imageSrc : HeroAnimationsSprites.idletopSword,
     },    
-    rollLeft : {
-        frameNumber: 6,
-        frameBuffer : 5,
+    rollRight : {
+        frameNumber: 5,
+        frameBuffer : 6,
         loop : false,
-        imageSrc : HeroAnimationsSprites.rollLeft,
+        imageSrc : HeroAnimationsSprites.rollRight,
+    },    
+    rollLeft : {
+        frameNumber: 5,
+        frameBuffer : 6,
+        loop : false,
+        imageSrc : HeroAnimationsSprites.rollRight,
     },    
     walkInDoor : {
         frameNumber: 12,

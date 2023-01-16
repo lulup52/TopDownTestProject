@@ -6,21 +6,23 @@ window.addEventListener('keydown', (event) => {
             let lastInput = checkPlayerLastInput()
             switch(lastInput) {
                 case 'left':
-                    player.velocity.x = -12
+                    player.switchSprite("rollLeft")
+                    player.velocity.x = -9
                     break;
                 case 'right':
-                    player.velocity.x = 12
+                    player.switchSprite("rollRight")
+                    player.velocity.x = 9
                     break;
                 case 'up':
-                    player.velocity.y = -12
+                    player.velocity.y = -9
                     break;
                 case 'down':
-                    player.velocity.y = 12
+                    player.velocity.y = 9
                     break;
             }
             setTimeout(() => {
                 keys.u.pressed = false
-            }, 150);
+            }, 300);
         break
         case 'w':
             console.log(inventory)
