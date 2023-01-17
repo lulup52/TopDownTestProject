@@ -146,6 +146,9 @@ function animate(){
         colisionBlock.draw()
     })
     colidableActors.forEach(actorType => {
+        if(! actorType.content) {
+            return
+        }
         actorType.content.forEach(actor => {
             actor.draw()
             if (actor.id.includes('enemi')) {

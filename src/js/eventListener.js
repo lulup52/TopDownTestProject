@@ -1,9 +1,11 @@
 let worldPause = false
 
-
 window.addEventListener('keydown', (event) => {
     switch(event.key) {
         case 'u':
+            if (keys.u.pressed) {
+                return
+            }
             keys.u.pressed = true
             console.log("j'apui sur U") 
             let lastInput = checkPlayerLastInput()

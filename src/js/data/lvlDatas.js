@@ -263,7 +263,9 @@ let lvlDatas = {
                 imageSrc: HeroAnimationsSprites.iddleDown,
                 frameNumber : 6,
                 animations : HeroAnimations,
-                id : 'enemi',
+                id : 'enemi-00',
+                behavior : "iaLvl1",
+                walkingArea : {x : 64 * 3, y : 64 * 3} ,
                 position : {
                     x: 300,
                     y: 300

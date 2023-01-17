@@ -5,13 +5,17 @@ class Enemi extends Sprite {
         imageSrc,
         frameNumber,
         animations,
+        behavior = "",
         hitBox = {},
+        walkingArea = {},
         id = "none",
         }) {
         super({ imageSrc, frameNumber, animations, hitBox,id })
         this.position = position
         this.moveSpeed = 5
-
+        this.behavior = behavior
+        this.initialPosition = position
+        this.walkingArea = walkingArea
         this.velocity = {
             x: 0,
             y: 0
@@ -27,9 +31,9 @@ class Enemi extends Sprite {
         this.direction = "left"
     }
     behaviorControler = () => {
-        switch(this.direction) {
-            case "left" :
-                this.velocity.x = 1 
+        switch(this.behavior) {
+            case "iaLvl1" :
+                this.iaLvl1()
                 break
         }
     }
@@ -251,5 +255,15 @@ class Enemi extends Sprite {
 
         
     // } 
-    
+    iaLvl1() {
+        // console.log( this.initialPosition)
+        // if (
+        //     this.porision.x > &&
+        //     this.porision.x &&
+        //     this.porision.y &&
+        //     this.porision.y 
+        //     ) {
+
+        // }
+    }
 }
