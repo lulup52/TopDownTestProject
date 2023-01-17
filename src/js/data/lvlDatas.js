@@ -265,10 +265,14 @@ let lvlDatas = {
                 animations : HeroAnimations,
                 id : 'enemi-00',
                 behavior : "iaLvl1",
-                walkingArea : {x : 64 * 3, y : 64 * 3} ,
+                walkingAreaSize : {x : 64 * 1, y : 64 * 1} ,
                 position : {
-                    x: 300,
-                    y: 300
+                    x: 400,
+                    y: 400
+                },
+                initialPosition : {
+                    x: 400,
+                    y: 400
                 }
             }) 
         ],

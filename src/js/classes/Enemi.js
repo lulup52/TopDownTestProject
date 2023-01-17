@@ -2,20 +2,29 @@ class Enemi extends Sprite {
     constructor({
         colisionBlocks =[],
         position = "",
+        initialPosition = "",
         imageSrc,
         frameNumber,
         animations,
         behavior = "",
         hitBox = {},
-        walkingArea = {},
+        walkingAreaSize= {},
+        walkingAreaLocation = "",
         id = "none",
         }) {
-        super({ imageSrc, frameNumber, animations, hitBox,id })
+        super({ imageSrc, frameNumber, animations, hitBox,id , walkingAreaLocation})
+        this.initialPosition = initialPosition
         this.position = position
         this.moveSpeed = 5
         this.behavior = behavior
-        this.initialPosition = position
-        this.walkingArea = walkingArea
+        this.walkingAreaSize = walkingAreaSize
+        this.walkingAreaLocation = {
+            y : this.initialPosition.y - this.walkingAreaSize.y,
+            x : this.initialPosition.x - this.walkingAreaSize.x,
+            height : this.walkingAreaSize.y * 3 ,
+            width : this.walkingAreaSize.x * 3 ,
+
+        }
         this.velocity = {
             x: 0,
             y: 0
@@ -256,14 +265,42 @@ class Enemi extends Sprite {
         
     // } 
     iaLvl1() {
-        // console.log( this.initialPosition)
-        // if (
-        //     this.porision.x > &&
-        //     this.porision.x &&
-        //     this.porision.y &&
-        //     this.porision.y 
-        //     ) {
+        console.log(
+        [
+        this.walkingAreaLocation.x,
+        this.walkingAreaLocation.y,
+        this.walkingAreaLocation.x + this.walkingAreaLocation.height,
+        this.walkingAreaLocation.y + this.walkingAreaLocation.width,
+        this.hitbox
 
-        // }
+        
+        ]
+        )
+        let direction = 3
+        if (
+        this.hitbox.position.x  > this.walkingAreaLocation.x &&
+        this.hitbox.position.y > this.walkingAreaLocation.y &&
+        this.hitbox.position.x + this.hitbox.width <  this.walkingAreaLocation.x + this.walkingAreaLocation.height &&
+        this.hitbox.position.y + this.hitbox.height< this.walkingAreaLocation.y + this.walkingAreaLocation.width
+        ) {
+            switch(direction) {
+            case 1: 
+                this.velocity.y = -1
+                break;
+            case 2: 
+                this.velocity.x = 1
+                break;
+            case 3: 
+                this.velocity.y = 1
+                break;
+            case 4: 
+                this.velocity.x = -1
+                break;
+            }  
+            
+        } else {
+            this.velocity.x = 0
+
+        }
     }
 }

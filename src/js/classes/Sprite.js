@@ -11,8 +11,10 @@ class Sprite{
         hitbox =false,
         hitboxAction = false,
         actionAnimComplete = false,
+        walkingAreaLocation = "",
         toPlayerPosition = ""
     }){
+        this.walkingAreaLocation = walkingAreaLocation
         this.id = id
         this.position = position
         this.frameNumber = frameNumber
@@ -100,6 +102,10 @@ class Sprite{
 
         // draw hitbox
         if (debugWatcher.drawHitbox) {
+            if(this.walkingAreaLocation) {
+                c.fillStyle = "rgba(200,100,0,0.6)"
+                c.fillRect(this.walkingAreaLocation.x,this.walkingAreaLocation.y, this.walkingAreaLocation.width, this.walkingAreaLocation.height)
+            }
             if (this.hitbox) {
                 if (this.id !== "Player") {
                     c.fillStyle = "rgba(0,255,0,0.6)"
