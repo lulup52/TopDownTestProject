@@ -258,6 +258,18 @@ let lvlDatas = {
                 
             }),
         ],
+        enemis : [
+            new Enemi({
+                imageSrc: HeroAnimationsSprites.iddleDown,
+                frameNumber : 6,
+                animations : HeroAnimations,
+                id : 'enemi',
+                position : {
+                    x: 300,
+                    y: 300
+                }
+            }) 
+        ],
         questItems : [
             new Sprite({
                 position : {

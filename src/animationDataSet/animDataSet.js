@@ -136,16 +136,16 @@ const HeroAnimations = {
         imageSrc : HeroAnimationsSprites.idletopSword,
     },    
     rollRight : {
-        frameNumber: 5,
-        frameBuffer : 6,
+        frameNumber: 9,
+        frameBuffer : 2,
         loop : false,
         imageSrc : HeroAnimationsSprites.rollRight,
     },    
     rollLeft : {
-        frameNumber: 5,
-        frameBuffer : 6,
+        frameNumber: 9,
+        frameBuffer : 2,
         loop : false,
-        imageSrc : HeroAnimationsSprites.rollRight,
+        imageSrc : HeroAnimationsSprites.rollLeft,
     },    
     walkInDoor : {
         frameNumber: 12,

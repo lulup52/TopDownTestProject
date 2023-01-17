@@ -1,3 +1,6 @@
+let worldPause = false
+
+
 window.addEventListener('keydown', (event) => {
     switch(event.key) {
         case 'u':
@@ -28,6 +31,10 @@ window.addEventListener('keydown', (event) => {
             console.log(inventory)
             console.log(equipedItems)
            debugWatcher.drawHitbox = !debugWatcher.drawHitbox
+        break
+        case 'p':
+            console.log(worldPause)
+            worldPause = !worldPause
         break
         case 'z':
             keys.z.pressed = true

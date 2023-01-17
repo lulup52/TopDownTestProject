@@ -2,6 +2,7 @@
 let debugWatcher = {
     drawHitbox : true
 }
+ 
 const checkPlayerLastInput = () => {
     return player.lastDirection
 }
@@ -87,6 +88,10 @@ const initialiseContent = () => {
             name: 'transisionsBetweenLvls',
             content : lvlDatas[`lvl${lvl}`].transisionsBetweenLvls,
         },
+        {
+            name: 'enemis',
+            content : lvlDatas[`lvl${lvl}`].enemis,
+        },
     ]
     player.colisionBlocks =  colisionBlocks
 }
@@ -143,6 +148,10 @@ function animate(){
     colidableActors.forEach(actorType => {
         actorType.content.forEach(actor => {
             actor.draw()
+            if (actor.id.includes('enemi')) {
+                actor.update()
+
+            }
         })
     })
     
@@ -206,7 +215,6 @@ function animate(){
             
         }
     }
-    
     
     
     
