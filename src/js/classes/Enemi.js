@@ -36,8 +36,7 @@ class Enemi extends Sprite {
         }
         this.colisionBlocks = colisionBlocks
         this.hitBox = hitBox
-        
-        this.direction = "left"
+        this.direction = 3
     }
     behaviorControler = () => {
         switch(this.behavior) {
@@ -264,43 +263,45 @@ class Enemi extends Sprite {
 
         
     // } 
-    iaLvl1() {
-        console.log(
-        [
-        this.walkingAreaLocation.x,
-        this.walkingAreaLocation.y,
-        this.walkingAreaLocation.x + this.walkingAreaLocation.height,
-        this.walkingAreaLocation.y + this.walkingAreaLocation.width,
-        this.hitbox
 
-        
-        ]
-        )
-        let direction = 3
+    iaLvl1() {
+        // console.log(
+        // )
         if (
         this.hitbox.position.x  > this.walkingAreaLocation.x &&
         this.hitbox.position.y > this.walkingAreaLocation.y &&
-        this.hitbox.position.x + this.hitbox.width <  this.walkingAreaLocation.x + this.walkingAreaLocation.height &&
-        this.hitbox.position.y + this.hitbox.height< this.walkingAreaLocation.y + this.walkingAreaLocation.width
+        this.hitbox.position.x + this.hitbox.width < this.walkingAreaLocation.x + this.walkingAreaLocation.height &&
+        this.hitbox.position.y + this.hitbox.height < this.walkingAreaLocation.y + this.walkingAreaLocation.height
         ) {
-            switch(direction) {
-            case 1: 
-                this.velocity.y = -1
-                break;
-            case 2: 
-                this.velocity.x = 1
-                break;
-            case 3: 
-                this.velocity.y = 1
-                break;
-            case 4: 
-                this.velocity.x = -1
-                break;
-            }  
-            
-        } else {
-            this.velocity.x = 0
+            switch(this.direction) {
+                case 1: 
+                    this.velocity.y = -1
+                    this.velocity.x = 0
+                    break;
+                case 2: 
+                    this.velocity.x = 1
+                    this.velocity.y = 0
+                    break;
+                case 3: 
+                    this.velocity.y = 1
+                    this.velocity.x = 0
+                    break;
+                case 4: 
+                    this.velocity.x = -1
+                    this.velocity.y = 0
 
+                    break;
+                }  
+        } else {
+           
+            this.velocity.x = 0
+            this.velocity.y = 0
+            
+            this.position.x -= 1
+            this.position.y -= 1
+            this.direction = Math.ceil(Math.random() * 4)
+            
+            console.log(this.direction)
         }
     }
 }
