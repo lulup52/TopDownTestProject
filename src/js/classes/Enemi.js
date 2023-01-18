@@ -37,8 +37,9 @@ class Enemi extends Sprite {
         this.colisionBlocks = colisionBlocks
         this.hitBox = hitBox
 
-        this.lastDirection = 1
+        this.lastDirection = 0
         this.direction = 1
+        this.randomDirection()
     }
     behaviorControler = () => {
         switch(this.behavior) {
@@ -49,8 +50,16 @@ class Enemi extends Sprite {
     }
     
     generateRandom(min, max, excl) {
+        // console.log(excl)
         var num = Math.floor(Math.random() * (max - min + 1)) + min;
         return (num === excl[0] ||  num === excl[1])? this.generateRandom(min, max) : num;
+    }
+    randomDirection = () => {
+        setTimeout(() => {
+            console.log('random')
+            this.direction =  this.generateRandom(1, 4, [this.direction, this.lastDirection])
+            this.randomDirection()
+        }, 2000);
     }
     
     update() {
@@ -273,6 +282,8 @@ class Enemi extends Sprite {
     // } 
 
     iaLvl1() {
+       
+        let newDirection = 0
         // console.log(
         // )
         if (
@@ -289,7 +300,6 @@ class Enemi extends Sprite {
                 this.hitbox.position.x + this.hitbox.width === this.walkingAreaLocation.x + this.walkingAreaLocation.height -1||
                 this.hitbox.position.y + this.hitbox.height === this.walkingAreaLocation.y + this.walkingAreaLocation.height -1
             ) {
-                console.log(this.direction)
                 switch(this.direction) {
                     case 1: 
                         this.position.y += 1
@@ -305,10 +315,16 @@ class Enemi extends Sprite {
     
                         break;
                     }
-                 this.lastDirection = this.direction
-                this.direction =  this.generateRandom(1, 4, [this.direction, this.slastDirection])
-               
-                console.log(this.direction)
+                console.log("--------AVANT DE CHANGER -------------")
+                
+                newDirection =  this.generateRandom(1, 4, [this.direction, this.lastDirection])
+                this.direction = newDirection
+                console.log({ lastDirection : this.lastDirection}, {direction : this.direction})
+                this.lastDirection = this.direction
+
+                console.log("--------Jai CHANGE -------------")
+
+
             } 
             switch(this.direction) {
                 case 1: 
