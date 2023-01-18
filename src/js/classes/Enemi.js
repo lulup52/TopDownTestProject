@@ -36,6 +36,8 @@ class Enemi extends Sprite {
         }
         this.colisionBlocks = colisionBlocks
         this.hitBox = hitBox
+
+        this.lastDirection = 1
         this.direction = 1
     }
     behaviorControler = () => {
@@ -48,7 +50,7 @@ class Enemi extends Sprite {
     
     generateRandom(min, max, excl) {
         var num = Math.floor(Math.random() * (max - min + 1)) + min;
-        return num === excl ? this.generateRandom(min, max) : num;
+        return (num === excl[0] ||  num === excl[1])? this.generateRandom(min, max) : num;
     }
     
     update() {
@@ -269,43 +271,66 @@ class Enemi extends Sprite {
 
         
     // } 
-    walk(direction) {
-        switch(this.direction) {
-            case 1: 
-                this.velocity.y = -1
-                this.velocity.x = 0
-                break;
-            case 2: 
-                this.velocity.x = 1
-                this.velocity.y = 0
-                break;
-            case 3: 
-                this.velocity.y = 1
-                this.velocity.x = 0
-                break;
-            case 4: 
-                this.velocity.x = -1
-                this.velocity.y = 0
 
-                break;
-            }  
-    }
     iaLvl1() {
         // console.log(
         // )
         if (
-        this.hitbox.position.x  >= this.walkingAreaLocation.x &&
-        this.hitbox.position.y >= this.walkingAreaLocation.y &&
-        this.hitbox.position.x + this.hitbox.width <= this.walkingAreaLocation.x + this.walkingAreaLocation.height &&
-        this.hitbox.position.y + this.hitbox.height <= this.walkingAreaLocation.y + this.walkingAreaLocation.height
+        this.hitbox.position.x  > this.walkingAreaLocation.x &&
+        this.hitbox.position.y > this.walkingAreaLocation.y &&
+        this.hitbox.position.x + this.hitbox.width < this.walkingAreaLocation.x + this.walkingAreaLocation.height &&
+        this.hitbox.position.y + this.hitbox.height < this.walkingAreaLocation.y + this.walkingAreaLocation.height
         ) {
 
-            this.walk(this.direction)
-             
-            
+
+            if (
+                this.hitbox.position.x  === this.walkingAreaLocation.x + 1 ||
+                this.hitbox.position.y === this.walkingAreaLocation.y + 1||
+                this.hitbox.position.x + this.hitbox.width === this.walkingAreaLocation.x + this.walkingAreaLocation.height -1||
+                this.hitbox.position.y + this.hitbox.height === this.walkingAreaLocation.y + this.walkingAreaLocation.height -1
+            ) {
+                console.log(this.direction)
+                switch(this.direction) {
+                    case 1: 
+                        this.position.y += 1
+                        break;
+                    case 2: 
+                        this.position.x += 1
+                        break;
+                    case 3: 
+                        this.position.y -= 1
+                        break;
+                    case 4: 
+                        this.position.x -= 1
+    
+                        break;
+                    }
+                 this.lastDirection = this.direction
+                this.direction =  this.generateRandom(1, 4, [this.direction, this.slastDirection])
+               
+                console.log(this.direction)
+            } 
+            switch(this.direction) {
+                case 1: 
+                    this.velocity.y = -1
+                    this.velocity.x = 0
+                    break;
+                case 2: 
+                    this.velocity.x = 1
+                    this.velocity.y = 0
+                    break;
+                case 3: 
+                    this.velocity.y = 1
+                    this.velocity.x = 0
+                    break;
+                case 4: 
+                    this.velocity.x = -1
+                    this.velocity.y = 0
+
+                    break;
+                }
         } else {
-                this.velocity.y = 0
-                this.velocity.x = 0
+
             
         }
     }
