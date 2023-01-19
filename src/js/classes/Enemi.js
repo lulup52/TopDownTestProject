@@ -37,9 +37,9 @@ class Enemi extends Sprite {
         this.colisionBlocks = colisionBlocks
         this.hitBox = hitBox
 
-        this.lastDirection = 0
+        this.lastDirection = 1
         this.direction = 1
-        this.randomDirection()
+        // this.randomDirection()
     }
     behaviorControler = () => {
         switch(this.behavior) {
@@ -50,17 +50,31 @@ class Enemi extends Sprite {
     }
     
     generateRandom(min, max, excl) {
-        // console.log(excl)
         var num = Math.floor(Math.random() * (max - min + 1)) + min;
-        return (num === excl[0] ||  num === excl[1])? this.generateRandom(min, max) : num;
+        console.log("tututu" , min, max, excl)
+        if (num === excl[0] ||  num === excl[1]) {
+            return this.generateRandom(min, max, excl)
+        } else {
+            return num
+        }
     }
-    randomDirection = () => {
-        setTimeout(() => {
-            console.log('random')
-            this.direction =  this.generateRandom(1, 4, [this.direction, this.lastDirection])
-            this.randomDirection()
-        }, 2000);
+    switchDirection = () => {
+        console.log("--------AVANT DE CHANGER -------------")
+        let newDirection =  this.generateRandom(1, 4, [1, 3])
+        // console.log(newDirection)
+        // this.direction = newDirection
+        // console.log(this.direction)
+        // this.lastDirection = this.direction
+        // console.log(this.lastDirection)
+        console.log("--------Jai CHANGE -------------")
     }
+    // randomDirection = () => {
+    //     setTimeout(() => {
+    //         console.log('random')
+    //         this.direction =  this.generateRandom(1, 4, [this.direction, this.lastDirection])
+    //         this.randomDirection()
+    //     }, 2000);
+    // }
     
     update() {
         if (worldPause) {
@@ -184,7 +198,6 @@ class Enemi extends Sprite {
     //                         if (actor.id.includes("transitionto")) {
     //                             lvl = actor.to
     //                             initialiseContent()
-    //                             console.log(lvl)
 
     //                             player.position =  {
     //                                 x: actor.newPlayerDest.x !== false ? actor.newPlayerDest.x : player.position.x,
@@ -284,7 +297,6 @@ class Enemi extends Sprite {
     iaLvl1() {
        
         let newDirection = 0
-        // console.log(
         // )
         if (
         this.hitbox.position.x  > this.walkingAreaLocation.x &&
@@ -315,36 +327,30 @@ class Enemi extends Sprite {
     
                         break;
                     }
-                console.log("--------AVANT DE CHANGER -------------")
-                
-                newDirection =  this.generateRandom(1, 4, [this.direction, this.lastDirection])
-                this.direction = newDirection
-                console.log({ lastDirection : this.lastDirection}, {direction : this.direction})
-                this.lastDirection = this.direction
-
-                console.log("--------Jai CHANGE -------------")
 
 
             } 
-            switch(this.direction) {
-                case 1: 
-                    this.velocity.y = -1
-                    this.velocity.x = 0
-                    break;
-                case 2: 
-                    this.velocity.x = 1
-                    this.velocity.y = 0
-                    break;
-                case 3: 
-                    this.velocity.y = 1
-                    this.velocity.x = 0
-                    break;
-                case 4: 
-                    this.velocity.x = -1
-                    this.velocity.y = 0
+            this.switchDirection()
 
-                    break;
-                }
+            // switch(this.direction) {
+            //     case 1: 
+            //         this.velocity.y = -1
+            //         this.velocity.x = 0
+            //         break;
+            //     case 2: 
+            //         this.velocity.x = 1
+            //         this.velocity.y = 0
+            //         break;
+            //     case 3: 
+            //         this.velocity.y = 1
+            //         this.velocity.x = 0
+            //         break;
+            //     case 4: 
+            //         this.velocity.x = -1
+            //         this.velocity.y = 0
+
+            //         break;
+            //     }
         } else {
 
             
