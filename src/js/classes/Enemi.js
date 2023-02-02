@@ -15,7 +15,7 @@ class Enemi extends Sprite {
         super({ imageSrc, frameNumber, animations, hitBox,id , walkingAreaLocation})
         this.initialPosition = initialPosition
         this.position = position
-        this.moveSpeed = 2
+        this.moveSpeed = 1
         this.behavior = behavior
         this.walkingAreaSize = walkingAreaSize
         this.walkingAreaLocation = {
@@ -38,7 +38,7 @@ class Enemi extends Sprite {
         this.hitBox = hitBox
 
         this.lastDirection = 1
-        this.direction = 1
+        this.direction = 2
         this.randomDirection()
         
     }
@@ -63,8 +63,7 @@ class Enemi extends Sprite {
         this.direction =  this.generateRandom(1, 4, [this.direction, this.lastDirection])
         // this.direction = newDirection
         // console.log(this.direction)
-        // this.lastDirection = this.direction
-        // console.log(this.lastDirection)
+      
         console.log("--------Jai CHANGE -------------")
     }
     randomDirection = () => {
@@ -73,7 +72,6 @@ class Enemi extends Sprite {
             this.randomDirection()
         }, 2000);
     }
-    
     update() {
         if (worldPause) {
             return
@@ -294,41 +292,20 @@ class Enemi extends Sprite {
 
     iaLvl1() {
        
-        let newDirection = 0
-        // )
+        // Calculer la nouvelle position de l'ennemi
+        let newX = this.hitbox.x + this.speed;
+        let newY = this.hitbox.y + this.speed;
+        
+        console.log(this.direction)
+
         if (
-        this.hitbox.position.x  > this.walkingAreaLocation.x &&
-        this.hitbox.position.y > this.walkingAreaLocation.y &&
-        this.hitbox.position.x + this.hitbox.width < this.walkingAreaLocation.x + this.walkingAreaLocation.height &&
-        this.hitbox.position.y + this.hitbox.height < this.walkingAreaLocation.y + this.walkingAreaLocation.height
+        this.hitbox.position.x - this.moveSpeed > this.walkingAreaLocation.x &&
+        this.hitbox.position.y - this.moveSpeed > this.walkingAreaLocation.y &&
+        this.hitbox.position.x + this.hitbox.width + this.moveSpeed < this.walkingAreaLocation.x + this.walkingAreaLocation.width &&
+        this.hitbox.position.y + this.hitbox.height + this.moveSpeed < this.walkingAreaLocation.y + this.walkingAreaLocation.height
         ) {
 
-
-            if (
-                this.hitbox.position.x  === this.walkingAreaLocation.x + 5 ||
-                this.hitbox.position.y === this.walkingAreaLocation.y + 5||
-                this.hitbox.position.x + this.hitbox.width === this.walkingAreaLocation.x + this.walkingAreaLocation.height -5||
-                this.hitbox.position.y + this.hitbox.height === this.walkingAreaLocation.y + this.walkingAreaLocation.height -5
-            ) {
-                switch(this.direction) {
-                    case 1: 
-                        this.position.y += 1
-                        break;
-                    case 2: 
-                        this.position.x -= 1
-                        break;
-                    case 3: 
-                        this.position.y -= 1
-                        break;
-                    case 4: 
-                        this.position.x += 1
-    
-                        break;
-                    }
-                    this.switchDirection()
-
-
-            } 
+            console.log('interieur')
             switch(this.direction) {
                 case 1: 
                     this.velocity.y = -this.moveSpeed
@@ -348,9 +325,39 @@ class Enemi extends Sprite {
 
                     break;
                 }
-        } else {
 
-            
+           
+        } else {
+            this.velocity.y = 0
+            this.velocity.x = 0
+            switch(this.direction) {
+                case 1: 
+                    this.direction = 3
+                    this.velocity.y = this.moveSpeed
+                    this.velocity.x = 0
+                    break;
+                case 2: 
+                    this.direction = 4
+                    this.velocity.x = -this.moveSpeed
+                    this.velocity.y = 0
+                    break;
+                case 3: 
+                    this.direction = 1
+
+                    this.velocity.y = -this.moveSpeed
+                    this.velocity.x = 0
+                    break;
+                case 4: 
+                    this.direction = 2
+                    this.velocity.x = this.moveSpeed
+                    this.velocity.y = 0
+
+                    break;
+                }
+
+            console.log('interieur')
+
+            // this.switchDirection()
         }
-    }
+    }   
 }
