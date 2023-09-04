@@ -57,6 +57,7 @@ class Sprite{
                         props.content.splice(index, 1)
                         if (this.id.includes('coin') ) {
                             inventory.coins++ 
+                            coinsUiUpdate()
                         }
                         if (this.id === "questItems-sword" ) {
                             equipedItems.weapons.push("questItems-sword") 
