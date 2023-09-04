@@ -16,13 +16,12 @@ const HeroAnimationsSprites = {
     idleleftSword : "./img/actors/hero/idleLeft-sword.png",
     idlerightSword : "./img/actors/hero/idleright-sword.png",
     idletopSword : "./img/actors/hero/idleUp-sword.png",
-    heroGetKey : "./img/actors/hero/heroGetKey.png",
+    heroGetFromChest : "./img/actors/hero/heroGetFromChest.png",
     rollRight : "./img/actors/hero/rollRight.png",
     rollLeft : "./img/actors/hero/rollLeft.png",
 }
 const gsapTransition = (nextLvl) => {
     lvl = nextLvl
-
     gsap.to(overlay, {
         duration: 1,
         opacity : 1,
@@ -153,21 +152,19 @@ const HeroAnimations = {
         loop : false,
         imageSrc : HeroAnimationsSprites.walkInDoor,
         onCompleteWithTransition : () => {
-            gsapTransition()
+            gsapTransition(2)
            
         }
         
     },  
-    heroGetKey : {
+    heroGetFromChest : {
         frameNumber: 5,
         frameBuffer : 8,
         loop : false,
         autoplay : false,
-        imageSrc : HeroAnimationsSprites.heroGetKey,
+        imageSrc : HeroAnimationsSprites.heroGetFromChest,
         onCompleteWithAction : () => {
-              globalEvents.specialAnimationPlayed = ''
-
-
+            setGlobalEvents("specialAnimationPlayed", "")
         }
     },  
 }
