@@ -1,6 +1,6 @@
 class Player extends Sprite {
     constructor({
-        colisionBlocks =[],
+        StaticColisionBlocks =[],
         imageSrc,
         frameNumber,
         animations,
@@ -23,7 +23,7 @@ class Player extends Sprite {
         this.sides = {
             bottom: this.position.y + this.height
         }
-        this.colisionBlocks = colisionBlocks
+        this.StaticColisionBlocks = StaticColisionBlocks
         this.actionAvailable = ""
         this.overlapedDoor = ""
         this.hitBox = hitBox
@@ -59,8 +59,8 @@ class Player extends Sprite {
         }
     }
     checkForHZCol() {
-        for(let i = 0; i < this.colisionBlocks.length; i++) {
-            const colisionBlock = this.colisionBlocks[i]
+        for(let i = 0; i < this.StaticColisionBlocks.length; i++) {
+            const colisionBlock = this.StaticColisionBlocks[i]
             //if a colision exist
             if (
                 this.hitbox.position.x <=
@@ -94,8 +94,8 @@ class Player extends Sprite {
         }
     }
     checkForVTCol() {
-        for(let i = 0; i < this.colisionBlocks.length; i++) {
-            const colisionBlock = this.colisionBlocks[i]
+        for(let i = 0; i < this.StaticColisionBlocks.length; i++) {
+            const colisionBlock = this.StaticColisionBlocks[i]
             //if a colision exist
             if (
                 this.hitbox.position.x <= colisionBlock.position.x + colisionBlock.width &&
@@ -129,13 +129,14 @@ class Player extends Sprite {
     
     colideWithObject() {
         globalEvents.playerActionActivated = "no"
-        
         for (let i = 0; i < colidableActors.length; i++) {
+            // console.log(colidableActors[i].content)
             for (let j = 0; j < colidableActors[i].content.length; j++) {
+            
                 let actor = colidableActors[i].content[j]
                 if (actor.hitboxAction) {
                     if (
-                        //check hitboxAction collision to let player activate the object
+                        //check actor hitboxAction collision to let player activate the object
                         actor.hitboxAction 
                         && this.hitbox.position.x <= actor.hitboxAction.position.x + actor.hitboxAction.width
                         && this.hitbox.position.x + this.hitbox.width >= actor.hitboxAction.position.x 
@@ -146,7 +147,6 @@ class Player extends Sprite {
                             if (actor.id.includes("transitionto")) {
                                 lvl = actor.to
                                 initialiseContent()
-                                console.log(lvl)
 
                                 player.position =  {
                                     x: actor.newPlayerDest.x !== false ? actor.newPlayerDest.x : player.position.x,
@@ -171,11 +171,6 @@ class Player extends Sprite {
                             && this.hitbox.position.y + this.hitbox.height >= actor.hitbox.position.y 
                             && this.hitbox.position.y <= actor.hitbox.position.y + actor.hitbox.height 
                         ) {
-                            //check colision with door
-                            //colision in y to the botom
-                            // if () {
-
-                            // }
                             if (this.hitbox.position.y < actor.hitbox.position.y + actor.hitbox.height) {
     
                                 if (this.velocity.y < 0) {
@@ -198,7 +193,7 @@ class Player extends Sprite {
                                 }
                             }
                             
-                           
+                            
                             //colision in x axis to the lef
                             if ( this.hitbox.position.x < actor.hitbox.position.x + actor.hitbox.width) {
                                 if (this.velocity.x < 0) {
@@ -235,12 +230,10 @@ class Player extends Sprite {
                     } 
                 }
             }
-
         } 
-       
-
-
-        
     } 
-    
+    moveTo(lastDirection, toNewLocation ) {
+        this.lastDirection = lastDirection
+        this.toNewLocation = toNewLocation
+    }
 }
