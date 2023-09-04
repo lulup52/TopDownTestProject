@@ -33,10 +33,14 @@ window.addEventListener('keydown', (event) => {
             console.log(inventory)
             console.log(equipedItems)
            debugWatcher.drawHitbox = !debugWatcher.drawHitbox
+           debugWatcher.activate = !debugWatcher.activate
         break
         case 'p':
-            console.log(worldPause)
-            worldPause = !worldPause
+            if (debugWatcher.activate) {
+                debugWatcher.superPause = !debugWatcher.superPause
+            } else {
+                worldPause = !worldPause
+            }
         break
         case 'z':
             keys.z.pressed = true
