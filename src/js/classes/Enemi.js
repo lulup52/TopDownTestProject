@@ -1,6 +1,6 @@
 class Enemi extends Sprite {
     constructor({
-        colisionBlocks =[],
+        StaticColisionBlocks =[],
         position = "",
         initialPosition = "",
         imageSrc,
@@ -34,7 +34,7 @@ class Enemi extends Sprite {
         this.sides = {
             bottom: this.position.y + this.height
         }
-        this.colisionBlocks = colisionBlocks
+        this.StaticColisionBlocks = StaticColisionBlocks
         this.hitBox = hitBox
 
         this.lastDirection = 1
@@ -64,7 +64,7 @@ class Enemi extends Sprite {
         // this.direction = newDirection
         // console.log(this.direction)
       
-        console.log("--------Jai CHANGE -------------")
+        // console.log("--------Jai CHANGE -------------")
     }
     randomDirection = () => {
         setTimeout(() => {
@@ -107,8 +107,8 @@ class Enemi extends Sprite {
         }
     }
     // checkForHZCol() {
-    //     for(let i = 0; i < this.colisionBlocks.length; i++) {
-    //         const colisionBlock = this.colisionBlocks[i]
+    //     for(let i = 0; i < this.StaticColisionBlocks.length; i++) {
+    //         const colisionBlock = this.StaticColisionBlocks[i]
     //         //if a colision exist
     //         if (
     //             this.hitbox.position.x <=
@@ -142,8 +142,8 @@ class Enemi extends Sprite {
     //     }
     // }
     // checkForVTCol() {
-    //     for(let i = 0; i < this.colisionBlocks.length; i++) {
-    //         const colisionBlock = this.colisionBlocks[i]
+    //     for(let i = 0; i < this.StaticColisionBlocks.length; i++) {
+    //         const colisionBlock = this.StaticColisionBlocks[i]
     //         //if a colision exist
     //         if (
     //             this.hitbox.position.x <= colisionBlock.position.x + colisionBlock.width &&
@@ -296,7 +296,7 @@ class Enemi extends Sprite {
         let newX = this.hitbox.x + this.speed;
         let newY = this.hitbox.y + this.speed;
         
-        console.log(this.direction)
+        // console.log(this.direction)
 
         if (
         this.hitbox.position.x - this.moveSpeed > this.walkingAreaLocation.x &&
@@ -305,7 +305,7 @@ class Enemi extends Sprite {
         this.hitbox.position.y + this.hitbox.height + this.moveSpeed < this.walkingAreaLocation.y + this.walkingAreaLocation.height
         ) {
 
-            console.log('interieur')
+            // console.log('interieur')
             switch(this.direction) {
                 case 1: 
                     this.velocity.y = -this.moveSpeed
@@ -355,7 +355,7 @@ class Enemi extends Sprite {
                     break;
                 }
 
-            console.log('interieur')
+            // console.log('interieur')
 
             // this.switchDirection()
         }
