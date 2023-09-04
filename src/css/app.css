@@ -1,7 +1,7 @@
 #viewportContainer {
     position: relative;
 }
-#uiContainer {
+#textBoxContainer {
     width: 100%;
     display: none;
     position: absolute;
@@ -16,4 +16,17 @@
 #dialogContainer p {
     padding: 1rem;
 
+}
+#uiContainner {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.221);
+    top: 0;
+    left: 0
+    ;
+}
+#uiContainner span{
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 2px black;
 }
