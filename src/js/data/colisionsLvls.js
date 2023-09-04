@@ -1,5 +1,5 @@
 
-const allCollisions = 
+const allStaticCollisions = 
 {
     "lvl1" : [
         173, 173, 173, 173, 173, 173, 173, 173, 173, 173, 173, 173, 173, 173, 173, 173,
