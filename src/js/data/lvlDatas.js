@@ -57,11 +57,8 @@ let lvlDatas = {
                         autoplay : false,
                         imageSrc : DoorAnimList.doorOppening,
                         onCompleteWithTransition : () => {
-                            player.lastDirection = "down"
-                            player.toNewLocation =  {
-                                x: 448,
-                                y: 128 - player.hitbox.height,
-                            }
+                            player.moveTo("down", { x: 448, y: 128 - player.hitbox.height})
+                           
                         }
                     },
                 },
@@ -386,7 +383,8 @@ let lvlDatas = {
                 
             }),
         ],
-
+        enemis : [
+        ],
         questItems : [
         ]
     },
@@ -508,7 +506,8 @@ let lvlDatas = {
                 
             }),
         ],
-
+        enemis : [
+        ],
         questItems : [
         ]
     },
@@ -589,7 +588,8 @@ let lvlDatas = {
                 
             }),
         ],
-
+        enemis : [
+        ],
         questItems : [
         ]
     },
