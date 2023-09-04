@@ -5,7 +5,7 @@ class InteractiveObject extends Sprite {
         imageSrc,
         frameNumber,
         frameBuffer = 3,
-        colisionBlocks =[],
+        StaticColisionBlocks =[],
         hitbox = {},
         hitboxAction = {},
         animations,
@@ -31,7 +31,7 @@ class InteractiveObject extends Sprite {
             this.actionAnimComplete = () => {
                 activeDialogContainer(this.nameitemContent, "nameitemContent")
                 equipedItems.keykItems.push(this.itemContent)
-                globalEvents.specialAnimationPlayed = "heroGetKey"
+                globalEvents.specialAnimationPlayed = "heroGetFromChest"
 
             }
         }
