@@ -1,8 +1,9 @@
 
 let debugWatcher = {
-    drawHitbox : true
+    activate : true,
+    drawHitbox : true,
+    superPause : false
 }
- 
 const checkPlayerLastInput = () => {
     return player.lastDirection
 }
@@ -17,10 +18,10 @@ const activeDialogContainer = (element, behavior) => {
             break
     }
 
-    document.querySelector("#uiContainer #dialogContainer p").innerText = sentence
-    document.querySelector("#uiContainer").style.display = "flex"
+    document.querySelector("#textBoxContainer #dialogContainer p").innerText = sentence
+    document.querySelector("#textBoxContainer").style.display = "flex"
     setTimeout(() => {
-        document.querySelector("#uiContainer").style.display = "none"
+        document.querySelector("#textBoxContainer").style.display = "none"
     }, 2500);
 }
 
@@ -31,7 +32,7 @@ canvas.width = 64 * 16
 canvas.height = 64 * 9
 
 let parsedCollisions 
-let colisionBlocks
+let StaticColisionBlocks
 let background
 let doors
 let coins
@@ -52,9 +53,11 @@ let lvl = 1
 
 
 const initialiseContent = () => {
-    parsedCollisions = allCollisions[`lvl${lvl}`].parse2D()
-    colisionBlocks = parsedCollisions.createObjectsFrom2D()
+    parsedCollisions = allStaticCollisions[`lvl${lvl}`].parse2D()
+    StaticColisionBlocks = parsedCollisions.createObjectsFrom2D()
+    
     background = new Sprite({
+        id : 'test', 
         position: {
             x: 0,
             y: 0,
@@ -92,8 +95,12 @@ const initialiseContent = () => {
             name: 'enemis',
             content : lvlDatas[`lvl${lvl}`].enemis,
         },
+        {
+            name: 'projectiles',
+            content : [],
+        },
     ]
-    player.colisionBlocks =  colisionBlocks
+    player.StaticColisionBlocks =  StaticColisionBlocks
 }
 
 
@@ -108,7 +115,9 @@ let globalEvents = {
     playerActionActivated : "no",
     specialAnimationPlayed : "",
 }
-
+const setGlobalEvents = (event, value) => {
+    globalEvents[`${event}`] = value
+}
 const player = new Player({
     imageSrc: HeroAnimationsSprites.iddleDown,
     frameNumber : 6,
@@ -139,10 +148,11 @@ const overlay = {
     opacity : 0,
 }
 function animate(){
+    if (!debugWatcher.superPause) {
     window.requestAnimationFrame(animate)
 
     background.draw()
-    colisionBlocks.forEach(colisionBlock => {
+    StaticColisionBlocks.forEach(colisionBlock => {
         colisionBlock.draw()
     })
     colidableActors.forEach(actorType => {
@@ -173,8 +183,8 @@ function animate(){
                 globalEvents.specialAnimationPlayed = ''
                 return
             }
-        } else if (globalEvents.specialAnimationPlayed === "heroGetKey") {
-            player.switchSprite("heroGetKey")
+        } else if (globalEvents.specialAnimationPlayed === "heroGetFromChest") {
+            player.switchSprite("heroGetFromChest")
             
         } else {
             let action = ""
@@ -218,17 +228,13 @@ function animate(){
             
         }
     }
-    
-    
-    
-    
     player.draw()
     player.update()
-
-  
+    }
 }
 
 initialiseContent()
 animate()
+
 // action when press input
 
